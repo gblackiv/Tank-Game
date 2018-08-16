@@ -8,24 +8,20 @@ html{
     display: inline-block;
     width: 69.75vw;
     height: 70vh;
-    background-color: blue;
     position: relative;
 }
 header{
     width: 100vw;
     height: 19vh;
-    background-color: red;
 }
 .sideBar{
     display: inline-block;
     width: 14.25vw;
     height: 70vh;
-    background-color: yellow;
 }
 footer{
     height: 10vh;
     width: 100vw;
-    background-color: pink;
 }
 .tank{
     position: absolute;
@@ -33,7 +29,7 @@ footer{
     width: 10%;
 }
 .cannonBall{
-    height: 10%;
-    width: 10%;
+    height: 1.5%;
+    width: 1.5%;
     position: absolute;
 }
