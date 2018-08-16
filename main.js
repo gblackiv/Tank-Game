@@ -45,8 +45,14 @@ class Tank{
         this.selector = $('#'+this.randomID);
     }
     shoot(){
-        console.log('BANG!')
-
+        console.log('BANG!');
+        debugger;
+        var cannonShot = $('<img>', {src: 'images/cannonBall.jpg',
+                                        'class': 'cannonBall',
+                                        css: {left: this.xPosition + '%',
+                                                top: this.yPosition +'%'}
+                                        } )
+        $('#mainScreen').append(cannonShot);
     }
     moveLeft(){
         this.xPosition -= 1.25;
@@ -71,6 +77,15 @@ class Tank{
     }
     explode(){
 
+    }
+}
+class CannonBall{
+    constructor( cannonBallOptions ){
+        this.xPosition = cannonBallOptions.xPosition;
+        this.yPosition = cannonBallOptions.yPosition;
+        this.configObj = {left: this.xPosition + '%',
+                            top: this.yPosition +'%'}
+        //this.ball = $('<img>', )
     }
 }
 

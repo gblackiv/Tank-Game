@@ -32,3 +32,8 @@ footer{
     height: 20%;
     width: 10%;
 }
+.cannonBall{
+    height: 10%;
+    width: 10%;
+    position: absolute;
+}
