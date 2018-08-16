@@ -1,0 +1,34 @@
+body, html{
+    margin: 0;
+}
+html{
+    font-size: 1vw;
+}
+#mainScreen{
+    display: inline-block;
+    width: 69.75vw;
+    height: 70vh;
+    background-color: blue;
+    position: relative;
+}
+header{
+    width: 100vw;
+    height: 19vh;
+    background-color: red;
+}
+.sideBar{
+    display: inline-block;
+    width: 14.25vw;
+    height: 70vh;
+    background-color: yellow;
+}
+footer{
+    height: 10vh;
+    width: 100vw;
+    background-color: pink;
+}
+.tank{
+    position: absolute;
+    height: 20%;
+    width: 10%;
+}
