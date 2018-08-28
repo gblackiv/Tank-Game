@@ -1,0 +1,1 @@
+const radiansConversionFactor = 0.0174533;
