@@ -6,40 +6,10 @@ class ScreenObjects{
         this.angleOfDirection = screenObjectOptions.angleOfDirection;
     }
     moveForward( selector ){
-        var newXPosition = Math.sin( this.angleOfDirection ) * 10;
-        var newYPosition = Math.cos( this.angleOfDirection ) * 10;
-        console.log('newXPosition',newXPosition)
-        console.log('newYPosition',newYPosition)
-
-        if( this.angleOfDirection <= 90 ){
-            console.log('current x pos:', this.xPosition);
-            this.xPosition += newXPosition;
-            this.yPosition -= newYPosition;
-            console.log('new x pos:', this.xPosition);
-        }
-        else if( this.angleOfDirection <= 180 ){
-            console.log('current x pos:', this.xPosition);
-
-            this.xPosition += newXPosition;
-            this.yPosition += newYPosition;
-            console.log('new x pos:', this.xPosition);
-
-        }
-        else if( this.angleOfDirection <= 270 ){
-            console.log('current x pos:', this.xPosition);
-
-            this.xPosition -= newXPosition;
-            this.yPosition += newYPosition;
-            console.log('new x pos:', this.xPosition);
-
-        }
-        else{
-            console.log('current x pos:', this.xPosition);
-            this.xPosition -= newXPosition;
-            this.yPosition -= newYPosition;
-            console.log('new x pos:', this.xPosition);
-
-        }
+        var newXPosition = Math.sin( this.angleOfDirection * radiansConversionFactor ) * 10;
+        var newYPosition = Math.cos( this.angleOfDirection * radiansConversionFactor ) * 10;
+        this.xPosition += newXPosition;
+        this.yPosition -= newYPosition;
         this.configObj[ 'css' ][ 'left' ] = this.xPosition + '%';
         this.configObj[ 'css' ][ 'top' ] = this.yPosition + '%';
         selector.css( this.configObj[ 'css' ] );
