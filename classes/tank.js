@@ -22,11 +22,17 @@ class Tank extends ScreenObjects{
     }
     turnLeft(){
         this.angleOfDirection -= 10;
+        if( this.angleOfDirection < 0 ){
+            this.angleOfDirection = 350;
+        }
         this.configObj[ 'css' ][ 'transform' ] = 'rotate('+this.angleOfDirection+'deg)';
         this.selector.css(this.configObj[ 'css' ]);
     }
     turnRight(){
         this.angleOfDirection += 10;
+        if( this.angleOfDirection > 350 ){
+            this.angleOfDirection = 0;
+        }
         this.configObj['css'][ 'transform' ] = 'rotate(' + this.angleOfDirection + 'deg)';
         this.selector.css( this.configObj[ 'css' ] );
     }

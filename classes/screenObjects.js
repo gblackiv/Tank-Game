@@ -5,7 +5,7 @@ class ScreenObjects{
         this.yPosition = screenObjectOptions.yPosition;
         this.angleOfDirection = screenObjectOptions.angleOfDirection;
     }
-    moveForward(selector){
+    moveForward( selector ){
         this.xPosition = Math.cos( this.angleOfDirection ) * 10;
         this.yPosition = Math.sin( this.angleOfDirection ) * 10;
         this.configObj[ 'css' ][ 'left' ] = this.xPosition + '%';
