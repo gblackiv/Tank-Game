@@ -1,6 +1,8 @@
 class Tank extends ScreenObjects{
     constructor( tankOptions ){
         super(tankOptions);
+        this.amITurningRight = false;
+        this.amITurningLeft = false;
         this.randomID = 'tank' + Math.floor( Math.random() * 1000 );
         this.configObj = {
             'class': 'tank', 
@@ -20,10 +22,22 @@ class Tank extends ScreenObjects{
                                         img: 'images/cannonBall.jpg' } ) );
         console.log( shotsFired[ 0 ] )
     }
+    toggleTurningLeftOn(){
+        this.amITurningLeft = true;
+    }
+    toggleTurningLeftOff(){
+        this.amITurningLeft = false;
+    }
     turnLeft(){
         this.angleOfDirection -= 10;
         this.configObj[ 'css' ][ 'transform' ] = 'rotate('+this.angleOfDirection+'deg)';
         this.selector.css(this.configObj[ 'css' ]);
+    }
+    toggleTurningRightOn(){
+        this.amITurningRight = true;
+    }
+    toggleTurningRightOff(){
+        this.amITurningRight = false;
     }
     turnRight(){
         this.angleOfDirection += 10;
@@ -33,26 +47,5 @@ class Tank extends ScreenObjects{
     moveReverse(){
 
     }
-    // moveLeft(){
-    //     this.xPosition -= 1.25;
-    //     this.configObj['css']['left'] = this.xPosition+'%';
-    //     this.selector.css(this.configObj['css']);
-        
-    // }
-    // moveRight(){
-    //     this.xPosition += 1.25;
-    //     this.configObj['css']['left'] = this.xPosition+'%';
-    //     this.selector.css(this.configObj['css']);
-    // }
-    // moveUp(){
-    //     this.yPosition -= 1.25;
-    //     this.configObj['css']['top'] = this.yPosition+'%';
-    //     this.selector.css(this.configObj['css']);
-    // }
-    // moveDown(){
-    //     this.yPosition += 1.25;
-    //     this.configObj['css']['top'] = this.yPosition+'%';
-    //     this.selector.css(this.configObj['css']);
-    // }
 
 }

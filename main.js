@@ -8,18 +8,19 @@ function initializeGame(){
 }
 
 function attachEventHandlers(){
-    $( document ).keydown( userKeyPresses );
+    $( document ).keydown( userKeyDownPresses );
+    $( document ).keyup( userKeyUpPresses );
 }
-function userKeyPresses( event ){
+function userKeyDownPresses( event ){
     switch( event.which ){
         case 37:
-            playerTank.turnLeft();
+            playerTank.toggleTurningLeftOn();
             break;
         case 38: 
             playerTank.moveForward( playerTank.selector );
             break;
         case 39:
-            playerTank.turnRight();
+            playerTank.toggleTurningRightOn();
             break;
         case 40:
             playerTank.moveDown();
@@ -29,7 +30,19 @@ function userKeyPresses( event ){
             break;
     }
 }
-
+function userKeyUpPresses( event ){
+    switch( event.which ){
+        case 37:
+            playerTank.toggleTurningLeftOff();
+            break;
+        case 38:
+            //toggle move forward
+            break;
+        case 39:
+            playerTank.toggleTurningRightOff();
+            break;
+    }
+}
 
 
 
