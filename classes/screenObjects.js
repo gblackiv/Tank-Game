@@ -5,12 +5,20 @@ class ScreenObjects{
         this.yPosition = screenObjectOptions.yPosition;
         this.angleOfDirection = screenObjectOptions.angleOfDirection;
         this.isMoving = false;
+        this.heartbeatTimer = 30;
+        this.heartbeat = null;
+    }
+    startHeartbeat(){
+        if( this.heartbeat !== null){
+            this.stopHeartbeat;
+        }
+        this.heartbeat = setInterval( this.handleHeartbeat.bind( this ), this.heartbeatTimer );
+    }
+    stopHeartbeat(){
+        this.heartbeat = null;
+
     }
     moveForward( selector ){
-        if( this.isMoving ){
-            return;
-        }
-        this.isMoving = true;
         var newXPosition = Math.sin( this.angleOfDirection * radiansConversionFactor ) * 5;
         var newYPosition = Math.cos( this.angleOfDirection * radiansConversionFactor ) * 5;
         this.xPosition += newXPosition;
@@ -29,3 +37,6 @@ class ScreenObjects{
         //selector.css( this.configObj[ 'css' ] );
     }
 }
+
+//you can use that counter in many places as a reference
+//encapsulation of the counter so it cannot be changed unless the function is ran

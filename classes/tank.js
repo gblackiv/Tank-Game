@@ -15,6 +15,17 @@ class Tank extends ScreenObjects{
         $( '#mainScreen' ).append( this.tank );
         this.selector = $( '#'+this.randomID );
     }
+    handleHeartbeat(){
+        if( this.amITurningLeft ){
+            this.turnLeft();
+        }
+        if( this.amITurningRight ){
+            this.turnRight();
+        }
+        if( this.isMoving ){
+            this.moveForward( this.selector );
+        }
+    }
     shoot(){
         console.log( 'BANG!' );
         shotsFired.push( new CannonBall ( { xPosition: this.xPosition, 
