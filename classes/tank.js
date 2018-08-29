@@ -26,7 +26,9 @@ class Tank extends ScreenObjects{
             this.angleOfDirection = 350;
         }
         this.configObj[ 'css' ][ 'transform' ] = 'rotate('+this.angleOfDirection+'deg)';
-        this.selector.css(this.configObj[ 'css' ]);
+        this.selector.animate( { transform: `rotate(${this.angleOfDirection}deg)` }, 'fast', ()=>{ this.isMoving = false; } );
+
+        // this.selector.css(this.configObj[ 'css' ]);
     }
     turnRight(){
         this.angleOfDirection += 10;
