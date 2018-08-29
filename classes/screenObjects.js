@@ -15,8 +15,14 @@ class ScreenObjects{
         var newYPosition = Math.cos( this.angleOfDirection * radiansConversionFactor ) * 5;
         this.xPosition += newXPosition;
         this.yPosition -= newYPosition;
-        selector.animate( { left: `+=${newXPosition}%` }, 'fast' );
-        selector.animate( { top: `-=${newYPosition}%` }, 'fast', ()=>{ this.isMoving = false; } );
+        selector.animate( { left: `+=${newXPosition}%` }, { duration: 500, 
+                                                            easing: 'linear', 
+                                                            queue: false} );
+
+        selector.animate( { top: `-=${newYPosition}%` }, { duration: 500, 
+                                                            easing: 'linear', 
+                                                            queue: false,
+                                                            complete: ()=>{ this.isMoving = false; } });
         this.configObj[ 'css' ][ 'left' ] = this.xPosition + '%';
         this.configObj[ 'css' ][ 'top' ] = this.yPosition + '%';
 
