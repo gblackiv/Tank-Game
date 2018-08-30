@@ -1,10 +1,12 @@
 $(document).ready(initializeGame)
-var playerTank
+var playerTank;
+var dummyTank;
 var shotsFired = [];
 
 function initializeGame(){
     playerTank = new Tank( { img: 'images/tankPic.png', xPosition: 0, yPosition: 25, angleOfDirection: 0 } );
     playerTank.startHeartbeat();
+    // dummyTank = new Tank( { img: 'images/tankPic.png', xPosition: 300, yPosition: 400, angleOfDirection: 0 } );
     attachEventHandlers();
 }
 
