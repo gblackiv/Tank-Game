@@ -27,7 +27,7 @@ footer{
 .tank{
     position: absolute;
     height: 20%;
-    width: 10%;
+    width: auto;
     transform-origin: (50%, 50%);
 }
 .cannonBall{

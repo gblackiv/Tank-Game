@@ -3,7 +3,7 @@ var playerTank
 var shotsFired = [];
 
 function initializeGame(){
-    playerTank = new Tank( { img: 'images/tankPic.jpeg', xPosition: 0, yPosition: 25, angleOfDirection: 0 } );
+    playerTank = new Tank( { img: 'images/tankPic.png', xPosition: 0, yPosition: 25, angleOfDirection: 0 } );
     playerTank.startHeartbeat();
     attachEventHandlers();
 }
