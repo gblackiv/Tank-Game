@@ -13,20 +13,19 @@ class CannonBall extends ScreenObjects{
                     'top': this.yPosition +'px' },
             alt: 'cannon ball img'
         }
-        this.ball = $( '<img>', this.configObj );
-        $( '#mainScreen' ).append(this.ball );
-        this.selector = $( '#'+this.randomID );
-
+        this.selector = null;
     }
     handleHeartbeat(){
         if( this.isMoving ){
             this.moveForward();
         }
+        this.getHitBox();
         this.checkIfStillOnScreen();
     }
     destroyCannonBall(){
         this.selector.remove();
-        //remove from ball array?
+        this.stopHeartbeat();
+        this.currentGameBoard.removeBallFromArray( this );
     }
     checkIfStillOnScreen(){
         if( parseInt( this.selector.css( 'left' ) ) < 0 || parseInt( this.selector.css( 'left' ) ) >  $( '#mainScreen' ).width() ){
@@ -35,5 +34,10 @@ class CannonBall extends ScreenObjects{
         if( parseInt( this.selector.css( 'top' ) ) < 0 || parseInt( this.selector.css( 'top' ) ) > $( '#mainScreen' ).height() ){
             this.destroyCannonBall();
         }
+    }
+    render(){
+        this.ball = $( '<img>', this.configObj );
+        $( '#mainScreen' ).append(this.ball );
+        this.selector = $( '#'+this.randomID );
     }
 }

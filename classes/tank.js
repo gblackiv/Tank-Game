@@ -31,21 +31,23 @@ class Tank extends ScreenObjects{
         if( this.isMoving ){
             this.moveForward( this.selector );
         }
+        this.getHitBox();
     }
     shoot(){
         if( this.rateOfFireBoolean ){
             return;
         }
         this.rateOfFireBoolean = true;
-        shotsFired.push( new CannonBall ( { xPosition: this.xPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 0 ] ), 
+        var newCannonBall = new CannonBall ( { xPosition: this.xPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 0 ] ), 
                                         yPosition: this.yPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 1 ] ), 
                                         img: 'images/cannonBall.png',
-                                        angleOfDirection: this.angleOfDirection } 
-                                        ) );
-        shotsFired[ shotsFired.length - 1 ].startHeartbeat();
+                                        angleOfDirection: this.angleOfDirection,
+                                        currentGameBoard: this.currentGameBoard } 
+                                        ) ;
         setTimeout(() => {
             this.rateOfFireBoolean = false;
-        }, 200);
+        }, 200 );
+        this.currentGameBoard.addBallToArray( newCannonBall );
     }
     toggleTurningLeftOn(){
         this.amITurningLeft = true;
@@ -75,12 +77,13 @@ class Tank extends ScreenObjects{
     toggleForwardMovementOff(){
         this.isMoving = false;
     }
+    collisionDetection(){
+
+    }
     moveReverse(){
 
     }
-    tankCurrentHitbox(){
 
-    }
 
 }
 //getBoundingClientRect
