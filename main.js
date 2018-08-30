@@ -4,6 +4,7 @@ var shotsFired = [];
 
 function initializeGame(){
     playerTank = new Tank( { img: 'images/tankPic.jpeg', xPosition: 0, yPosition: 25, angleOfDirection: 0 } );
+    playerTank.startHeartbeat();
     attachEventHandlers();
 }
 
@@ -17,7 +18,7 @@ function userKeyDownPresses( event ){
             playerTank.toggleTurningLeftOn();
             break;
         case 38: 
-            playerTank.moveForward( playerTank.selector );
+            playerTank.toggleForwardMovementOn();
             break;
         case 39:
             playerTank.toggleTurningRightOn();
@@ -36,7 +37,7 @@ function userKeyUpPresses( event ){
             playerTank.toggleTurningLeftOff();
             break;
         case 38:
-            //toggle move forward
+            playerTank.toggleForwardMovementOff();
             break;
         case 39:
             playerTank.toggleTurningRightOff();

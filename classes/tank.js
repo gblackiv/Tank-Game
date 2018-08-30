@@ -8,7 +8,12 @@ class Tank extends ScreenObjects{
             'class': 'tank', 
             id: this.randomID,
             src: this.img,
-            css: { 'top': this.yPosition+'%', left: this.xPosition+'%' },
+            css: { 
+                'top': this.yPosition+'px', 
+                left: this.xPosition+'px', 
+                transition: `transform ${this.heartbeatTimer} linear, 
+                left ${this.heartbeatTimer} linear, 
+                right ${this.heartbeatTimer} linear` },
             alt: 'tank Img' 
         }
         this.tank = $( '<img>', this.configObj);
@@ -28,10 +33,16 @@ class Tank extends ScreenObjects{
     }
     shoot(){
         console.log( 'BANG!' );
-        shotsFired.push( new CannonBall ( { xPosition: this.xPosition, 
-                                        yPosition: this.yPosition, 
-                                        img: 'images/cannonBall.jpg' } ) );
+        shotsFired.push( new CannonBall ( { xPosition: this.xPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 0 ] ), 
+                                        yPosition: this.yPosition + + parseFloat( this.selector.css('transform-origin').split(' ')[ 1 ] ), 
+                                        img: 'images/cannonBall.png',
+                                        angleOfDirection: this.angleOfDirection } 
+                                        ) );
+        shotsFired[ shotsFired.length - 1 ].startHeartbeat();
         console.log( shotsFired[ 0 ] )
+    }
+    createObjOutOfOrigin(){
+        this.selector.css('transform-origin').split('')
     }
     toggleTurningLeftOn(){
         this.amITurningLeft = true;
@@ -40,9 +51,9 @@ class Tank extends ScreenObjects{
         this.amITurningLeft = false;
     }
     turnLeft(){
-        this.angleOfDirection -= 10;
+        this.angleOfDirection -= 5;
         this.configObj[ 'css' ][ 'transform' ] = 'rotate('+this.angleOfDirection+'deg)';
-        this.selector.css(this.configObj[ 'css' ]);
+        this.moveDomElement()
     }
     toggleTurningRightOn(){
         this.amITurningRight = true;
@@ -51,12 +62,19 @@ class Tank extends ScreenObjects{
         this.amITurningRight = false;
     }
     turnRight(){
-        this.angleOfDirection += 10;
+        this.angleOfDirection += 5;
         this.configObj[ 'css' ][ 'transform' ] = 'rotate(' + this.angleOfDirection + 'deg)';
-        this.selector.css( this.configObj[ 'css' ] );
+        this.moveDomElement()
+    }
+    toggleForwardMovementOn(){
+        this.isMoving = true;
+    }
+    toggleForwardMovementOff(){
+        this.isMoving = false;
     }
     moveReverse(){
 
     }
+
 
 }
