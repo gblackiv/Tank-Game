@@ -32,17 +32,12 @@ class Tank extends ScreenObjects{
         }
     }
     shoot(){
-        console.log( 'BANG!' );
         shotsFired.push( new CannonBall ( { xPosition: this.xPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 0 ] ), 
-                                        yPosition: this.yPosition + + parseFloat( this.selector.css('transform-origin').split(' ')[ 1 ] ), 
+                                        yPosition: this.yPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 1 ] ), 
                                         img: 'images/cannonBall.png',
                                         angleOfDirection: this.angleOfDirection } 
                                         ) );
         shotsFired[ shotsFired.length - 1 ].startHeartbeat();
-        console.log( shotsFired[ 0 ] )
-    }
-    createObjOutOfOrigin(){
-        this.selector.css('transform-origin').split('')
     }
     toggleTurningLeftOn(){
         this.amITurningLeft = true;
