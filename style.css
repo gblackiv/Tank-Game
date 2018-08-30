@@ -1,5 +1,6 @@
 body, html{
     margin: 0;
+    overflow: hidden;
 }
 html{
     font-size: 1vw;
@@ -27,6 +28,7 @@ footer{
     position: absolute;
     height: 20%;
     width: 10%;
+    transform-origin: (50%, 50%);
 }
 .cannonBall{
     height: 1.5%;
