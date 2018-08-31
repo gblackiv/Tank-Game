@@ -10,9 +10,12 @@ class Sound{
     }
     play(){
         this.sound.play();
-        console.log( src, 'sound is playing' );
     }
     stop(){
         this.sound.pause();
     }
+}
+var soundsObj = {
+    tankCannon: new Sound('sounds/tankCannon.flac'),
+    tankDeath: new Sound('sounds/tankDeath.mp3')
 }
