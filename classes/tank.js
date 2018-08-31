@@ -37,6 +37,7 @@ class Tank extends ScreenObjects{
             return;
         }
         this.rateOfFireBoolean = true;
+        soundsObj.tankCannon.play();
         var newCannonBall = new CannonBall ( { xPosition: this.xPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 0 ] ) + ( Math.sin( this.angleOfDirection * radiansConversionFactor ) * ( this.hitBox.width / 1.2 ) ), 
                                         yPosition: this.yPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 1 ] ) - ( Math.cos( this.angleOfDirection * radiansConversionFactor ) * ( this.hitBox.height / 1.2 ) ), 
                                         img: 'images/cannonBall.png',
@@ -86,6 +87,8 @@ class Tank extends ScreenObjects{
                 else{
                     this.destroyTank();
                     cannonBallArray[ collisionIndex ].destroyCannonBall();
+                    soundsObj.tankDeath.play();
+
                 }
         }
     }
