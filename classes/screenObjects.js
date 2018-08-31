@@ -7,15 +7,15 @@ class ScreenObjects{
         this.angleOfDirection = screenObjectOptions.angleOfDirection;
         this.isMoving = false;
         this.hitBox = null;
-        this.heartbeatTimer = this.currentGameBoard.heartbeatTimer;
+        this.heartbeatTimer = globalHeartbeatTimer;
         this.heartbeat = null;
         this.forwardSpeed = 75;
         this.movementsPerSecond = 1000 / this.heartbeatTimer;
-        this.forwardSpeedPerSecond = this.forwardSpeed / this.movementsPerSecond;  //doesnt need to be hard coded
+        this.forwardSpeedPerSecond = this.forwardSpeed / this.movementsPerSecond;
     }
     startHeartbeat(){
         if( this.heartbeat !== null){
-            this.stopHeartbeat;
+            this.stopHeartbeat();
         }
         this.heartbeat = setInterval( this.handleHeartbeat.bind( this ), this.heartbeatTimer );
     }
@@ -23,7 +23,6 @@ class ScreenObjects{
         clearInterval(this.heartbeat);
         this.heartbeat = null;
     }
-
     moveForward(){
         var newXPosition = Math.sin( this.angleOfDirection * radiansConversionFactor ) * this.forwardSpeedPerSecond;
         var newYPosition = Math.cos( this.angleOfDirection * radiansConversionFactor ) * this.forwardSpeedPerSecond;

@@ -32,21 +32,22 @@ class Tank extends ScreenObjects{
             this.moveForward( this.selector );
         }
         this.getHitBox();
+        this.collisionDetection( this.currentGameBoard.shotsFiredArray );
     }
     shoot(){
         if( this.rateOfFireBoolean ){
             return;
         }
         this.rateOfFireBoolean = true;
-        var newCannonBall = new CannonBall ( { xPosition: this.xPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 0 ] ), 
-                                        yPosition: this.yPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 1 ] ), 
+        var newCannonBall = new CannonBall ( { xPosition: this.xPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 0 ] ) + ( Math.sin( this.angleOfDirection * radiansConversionFactor ) * ( this.hitBox.width / 1.2 ) ), 
+                                        yPosition: this.yPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 1 ] ) - ( Math.cos( this.angleOfDirection * radiansConversionFactor ) * ( this.hitBox.height / 1.2 ) ), 
                                         img: 'images/cannonBall.png',
                                         angleOfDirection: this.angleOfDirection,
                                         currentGameBoard: this.currentGameBoard } 
                                         ) ;
         setTimeout(() => {
             this.rateOfFireBoolean = false;
-        }, 200 );
+        }, rateOfFire );
         this.currentGameBoard.addBallToArray( newCannonBall );
     }
     toggleTurningLeftOn(){
@@ -77,8 +78,17 @@ class Tank extends ScreenObjects{
     toggleForwardMovementOff(){
         this.isMoving = false;
     }
-    collisionDetection(){
-
+    collisionDetection( cannonBallArray ){
+        for( let collisionIndex = 0; collisionIndex < cannonBallArray.length; collisionIndex++ ){
+            if(  this.hitBox.top > cannonBallArray[ collisionIndex ].hitBox.bottom ||
+                 this.hitBox.bottom < cannonBallArray[ collisionIndex ].hitBox.top ||
+                 this.hitBox.left > cannonBallArray[ collisionIndex ].hitBox.right ||
+                this.hitBox.right < cannonBallArray[ collisionIndex ].hitBox.left  ){
+                }
+                else{
+                    console.log(this.randomID, 'DEAD!!!');
+                }
+        }
     }
     moveReverse(){
 
