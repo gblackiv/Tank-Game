@@ -1,0 +1,40 @@
+body, html{
+    margin: 0;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+html{
+    font-size: 1vw;
+}
+#mainScreen{
+    display: inline-block;
+    width: 80vw;
+    height: 80vh;
+    position: relative;
+    background-color: cadetblue;
+}
+header{
+    width: 100vw;
+    height: 10vh;
+}
+.sideBar{
+    display: inline-block;
+    width: 10vw;
+    height: 70vh;
+}
+footer{
+    height: 10vh;
+    width: 100vw;
+}
+.tank{
+    position: absolute;
+    height: 10%;
+    width: auto;
+    transform-origin: (50%, 50%);
+}
+.cannonBall{
+    height: 1%;
+    width: 1%;
+    position: absolute;
+}
