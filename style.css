@@ -1,23 +1,26 @@
 body, html{
     margin: 0;
     overflow: hidden;
+    width: 100vw;
+    height: 100vh;
 }
 html{
     font-size: 1vw;
 }
 #mainScreen{
     display: inline-block;
-    width: 69.75vw;
-    height: 70vh;
+    width: 80vw;
+    height: 80vh;
     position: relative;
+    background-color: cadetblue;
 }
 header{
     width: 100vw;
-    height: 19vh;
+    height: 10vh;
 }
 .sideBar{
     display: inline-block;
-    width: 14.25vw;
+    width: 10vw;
     height: 70vh;
 }
 footer{
@@ -26,12 +29,12 @@ footer{
 }
 .tank{
     position: absolute;
-    height: 20%;
+    height: 10%;
     width: auto;
     transform-origin: (50%, 50%);
 }
 .cannonBall{
-    height: 1.5%;
-    width: 1.5%;
+    height: 1%;
+    width: 1%;
     position: absolute;
 }

@@ -1,10 +1,15 @@
 $(document).ready(initializeGame)
-var playerTank
+var playerTank;
+var dummyTank;
+var theGameScreen;
 var shotsFired = [];
 
 function initializeGame(){
-    playerTank = new Tank( { img: 'images/tankPic.png', xPosition: 0, yPosition: 25, angleOfDirection: 0 } );
+    theGameScreen = new GameBoard();
+    playerTank = new Tank( { img: 'images/tankPic.png', xPosition: 0, yPosition: 25, angleOfDirection: 0, currentGameBoard: theGameScreen } );
     playerTank.startHeartbeat();
+    dummyTank = new Tank( { img: 'images/tankPic.png', xPosition: 300, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+    dummyTank.startHeartbeat();
     attachEventHandlers();
 }
 
@@ -24,7 +29,7 @@ function userKeyDownPresses( event ){
             playerTank.toggleTurningRightOn();
             break;
         case 40:
-            playerTank.moveDown();
+            //playerTank.moveDown();
             break;
         case 32: 
             playerTank.shoot();
