@@ -6,10 +6,11 @@ var shotsFired = [];
 
 function initializeGame(){
     theGameScreen = new GameBoard();
-    playerTank = new Tank( { img: 'images/tankPic.png', xPosition: 0, yPosition: 25, angleOfDirection: 0, currentGameBoard: theGameScreen } );
-    playerTank.startHeartbeat();
-    dummyTank = new Tank( { img: 'images/tankPic.png', xPosition: 300, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
-    dummyTank.startHeartbeat();
+    theGameScreen.createNewPlayerTank( { img: 'images/tankPic.png', xPosition: 0, yPosition: 25, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+    theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 300, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+    theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 500, yPosition: 100, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+    theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 100, yPosition: 200, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+    theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 200, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
     attachEventHandlers();
 }
 
@@ -20,32 +21,29 @@ function attachEventHandlers(){
 function userKeyDownPresses( event ){
     switch( event.which ){
         case 37:
-            playerTank.toggleTurningLeftOn();
+            theGameScreen.playerTank.toggleTurningLeftOn();
             break;
         case 38: 
-            playerTank.toggleForwardMovementOn();
+            theGameScreen.playerTank.toggleForwardMovementOn();
             break;
         case 39:
-            playerTank.toggleTurningRightOn();
-            break;
-        case 40:
-            //playerTank.moveDown();
+            theGameScreen.playerTank.toggleTurningRightOn();
             break;
         case 32: 
-            playerTank.shoot();
+            theGameScreen.playerTank.shoot();
             break;
     }
 }
 function userKeyUpPresses( event ){
     switch( event.which ){
         case 37:
-            playerTank.toggleTurningLeftOff();
+            theGameScreen.playerTank.toggleTurningLeftOff();
             break;
         case 38:
-            playerTank.toggleForwardMovementOff();
+            theGameScreen.playerTank.toggleForwardMovementOff();
             break;
         case 39:
-            playerTank.toggleTurningRightOff();
+            theGameScreen.playerTank.toggleTurningRightOff();
             break;
     }
 }

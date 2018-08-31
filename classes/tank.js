@@ -17,9 +17,7 @@ class Tank extends ScreenObjects{
                 right ${this.heartbeatTimer} linear` },
             alt: 'tank Img',
         }
-        this.tank = $( '<img>', this.configObj);
-        $( '#mainScreen' ).append( this.tank );
-        this.selector = $( '#'+this.randomID );
+        this.selector = null;
     }
     handleHeartbeat(){
         if( this.amITurningLeft ){
@@ -87,14 +85,24 @@ class Tank extends ScreenObjects{
                 this.hitBox.right < cannonBallArray[ collisionIndex ].hitBox.left  ){
                 }
                 else{
+                    this.destroyTank();
+                    cannonBallArray[ collisionIndex ].destroyCannonBall();
                     soundsObj.tankDeath.play();
+
                 }
         }
     }
     moveReverse(){
 
     }
-
-
+    destroyTank(){
+        this.stopHeartbeat();
+        this.selector.remove();
+        this.currentGameBoard.removeTankFromGame( this );
+    }
+    render(){
+        this.tank = $( '<img>', this.configObj);
+        $( '#mainScreen' ).append( this.tank );
+        this.selector = $( '#'+this.randomID );
+    }
 }
-//getBoundingClientRect
