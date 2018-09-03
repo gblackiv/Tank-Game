@@ -38,3 +38,24 @@ footer{
     width: 1%;
     position: absolute;
 }
+/* .tankSquare{
+    height: 10%;
+    width: 3%;
+    position: absolute;
+    transform-origin: ( 50%, 50% );
+    background-color: grey;
+    left: 0;
+    top: 0;
+}
+.tankCannon{
+
+}
+.tankHead{
+
+}
+.tankTracks{
+    height: 75%;
+    width: 100%;
+    position: relative;
+    background-color: black;
+} */
