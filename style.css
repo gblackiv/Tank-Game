@@ -38,24 +38,30 @@ footer{
     width: 1%;
     position: absolute;
 }
-/* .tankSquare{
-    height: 10%;
-    width: 3%;
+.tankSquare{
+    height: 7%;
+    width: 2.5%;
     position: absolute;
     transform-origin: ( 50%, 50% );
     background-color: grey;
-    left: 0;
-    top: 0;
+    left: 20%;
+    top: 20%;
 }
 .tankCannon{
-
+    background-color: palevioletred;
+    height: 180%;
+    width: 25%;
+    position: absolute;
+    top: -180%;
+    left: 40%;
+    /* transform: translate(0, -50%); */
 }
 .tankHead{
-
+    width: 50%;
+    height: 35%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: red;
 }
-.tankTracks{
-    height: 75%;
-    width: 100%;
-    position: relative;
-    background-color: black;
-} */
