@@ -38,3 +38,30 @@ footer{
     width: 1%;
     position: absolute;
 }
+.tankSquare{
+    height: 7%;
+    width: 2.5%;
+    position: absolute;
+    transform-origin: ( 50%, 50% );
+    background-color: forestgreen;
+    left: 20%;
+    top: 20%;
+}
+.tankGun{
+    background-color: darkslategrey;
+    height: 180%;
+    width: 25%;
+    position: absolute;
+    top: -180%;
+    left: 40%;
+
+}
+.tankTurret{
+    width: 50%;
+    height: 35%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: darkslategrey;
+}

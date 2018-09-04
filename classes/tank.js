@@ -6,7 +6,7 @@ class Tank extends ScreenObjects{
         this.randomID = 'tank' + Math.floor( Math.random() * 1000 );
         this.rateOfFireBoolean = false;
         this.configObj = {
-            'class': 'tank', 
+            'class': 'tankSquare', 
             id: this.randomID,
             src: this.img,
             css: { 
@@ -38,8 +38,8 @@ class Tank extends ScreenObjects{
         }
         this.rateOfFireBoolean = true;
         soundsObj.tankCannon.play();
-        var newCannonBall = new CannonBall ( { xPosition: this.xPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 0 ] ) + ( Math.sin( this.angleOfDirection * radiansConversionFactor ) * ( this.hitBox.width / 1.2 ) ), 
-                                        yPosition: this.yPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 1 ] ) - ( Math.cos( this.angleOfDirection * radiansConversionFactor ) * ( this.hitBox.height / 1.2 ) ), 
+        var newCannonBall = new CannonBall ( { xPosition: this.xPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 0 ] ) + ( Math.sin( this.angleOfDirection * radiansConversionFactor ) * ( this.hitBox.width / 1.1 ) ), 
+                                        yPosition: this.yPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 1 ] ) - ( Math.cos( this.angleOfDirection * radiansConversionFactor ) * ( this.hitBox.height / 1.1 ) ), 
                                         img: 'images/cannonBall.png',
                                         angleOfDirection: this.angleOfDirection,
                                         currentGameBoard: this.currentGameBoard } 
@@ -56,7 +56,7 @@ class Tank extends ScreenObjects{
         this.amITurningLeft = false;
     }
     turnLeft(){
-        this.angleOfDirection -= 5;
+        this.angleOfDirection -= turnRadius;
         this.configObj[ 'css' ][ 'transform' ] = 'rotate('+this.angleOfDirection+'deg)';
         this.moveDomElement()
     }
@@ -67,7 +67,7 @@ class Tank extends ScreenObjects{
         this.amITurningRight = false;
     }
     turnRight(){
-        this.angleOfDirection += 5;
+        this.angleOfDirection += turnRadius;
         this.configObj[ 'css' ][ 'transform' ] = 'rotate(' + this.angleOfDirection + 'deg)';
         this.moveDomElement()
     }
@@ -101,7 +101,11 @@ class Tank extends ScreenObjects{
         this.currentGameBoard.removeTankFromGame( this );
     }
     render(){
-        this.tank = $( '<img>', this.configObj);
+        this.tankGun = $( '<div>', { 'class': 'tankGun' } );
+        this.tankTurret = $( '<div>', { 'class': 'tankTurret' } );
+        this.tank = $( '<div>', this.configObj );
+        this.tankTurret.append( this.tankGun );
+        this.tank.append( this.tankTurret );
         $( '#mainScreen' ).append( this.tank );
         this.selector = $( '#'+this.randomID );
     }

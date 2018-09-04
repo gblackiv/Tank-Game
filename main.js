@@ -11,6 +11,12 @@ function initializeGame(){
     theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 500, yPosition: 100, angleOfDirection: 0, currentGameBoard: theGameScreen } );
     theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 100, yPosition: 200, angleOfDirection: 0, currentGameBoard: theGameScreen } );
     theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 200, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+
+    theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 200, yPosition: 100, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+    theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 200, yPosition: 200, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+    theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 200, yPosition: 300, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+
+    theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 200, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
     attachEventHandlers();
 }
 
