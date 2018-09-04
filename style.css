@@ -59,9 +59,9 @@ footer{
 .tankTurret{
     width: 50%;
     height: 35%;
+    transform-origin: (50%, 50%);
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    left: 25%;
+    top: 40%;
     background-color: darkslategrey;
 }

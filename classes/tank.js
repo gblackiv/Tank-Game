@@ -5,6 +5,7 @@ class Tank extends ScreenObjects{
         this.amITurningLeft = false;
         this.randomID = 'tank' + Math.floor( Math.random() * 1000 );
         this.rateOfFireBoolean = false;
+        this.turretAngle = 0;
         this.configObj = {
             'class': 'tankSquare', 
             id: this.randomID,
@@ -109,4 +110,9 @@ class Tank extends ScreenObjects{
         $( '#mainScreen' ).append( this.tank );
         this.selector = $( '#'+this.randomID );
     }
+    alignTurret(){
+        //FIXME find the rotation of the turret using trig based off mouse and tank position
+        this.tankTurret.css('transform', `rotate(${30}deg)`);
+    }
 }
+
