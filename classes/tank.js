@@ -110,9 +110,29 @@ class Tank extends ScreenObjects{
         $( '#mainScreen' ).append( this.tank );
         this.selector = $( '#'+this.randomID );
     }
-    alignTurret(){
+    alignTurret(x, y){
         //FIXME find the rotation of the turret using trig based off mouse and tank position
-        this.tankTurret.css('transform', `rotate(${30}deg)`);
+        let deltaX = this.xPosition - x;
+        let deltaY = this.yPosition - y;
+        if( deltaX <= 0 && deltaY <= 0 ){
+            this.turretAngle = 90;
+        }
+        if( deltaX >= 0 && deltaY <= 0 ){
+            this.turretAngle = 180;
+        }
+        if( deltaX >= 0 && deltaY >= 0 ){
+            this.turretAngle = 270;
+        }
+        deltaX = Math.abs( deltaX );
+        deltaY = Math.abs( deltaY );
+        let theta = Math.atan( deltaX, deltaY ) * degreeConversionFactor;
+        this.turretAngle += theta;
+        //deltaX and deltaY are the differneces of x and y coordinates from tank to mouse.
+        //theta is the angle of the deltas to the mouse. must use if statements to correct angle so that it corilates with the correct quadrant of the screen
+        //math is on meistertask
+        // var newXPosition = Math.sin( this.angleOfDirection * radiansConversionFactor ) * this.forwardSpeedPerSecond;
+        // var newYPosition = Math.cos( this.angleOfDirection * radiansConversionFactor ) * this.forwardSpeedPerSecond;
+        this.tankTurret.css( 'transform', `rotate(${theta}deg)` );
     }
 }
 
