@@ -58,6 +58,8 @@ class Tank extends ScreenObjects{
     }
     turnLeft(){
         this.angleOfDirection -= turnRadius;
+        this.turretAngle += turnRadius;
+        this.tankTurret.css( 'transform', `rotate(${this.turretAngle}deg)` );
         this.configObj[ 'css' ][ 'transform' ] = 'rotate('+this.angleOfDirection+'deg)';
         this.moveDomElement()
     }
@@ -69,8 +71,10 @@ class Tank extends ScreenObjects{
     }
     turnRight(){
         this.angleOfDirection += turnRadius;
+        this.turretAngle -= turnRadius;
+        this.tankTurret.css( 'transform', `rotate(${this.turretAngle}deg)` );
         this.configObj[ 'css' ][ 'transform' ] = 'rotate(' + this.angleOfDirection + 'deg)';
-        this.moveDomElement()
+        this.moveDomElement();
     }
     toggleForwardMovementOn(){
         this.isMoving = true;
@@ -114,19 +118,24 @@ class Tank extends ScreenObjects{
         //FIXME find the rotation of the turret using trig based off mouse and tank position
         let deltaX = this.xPosition - x;
         let deltaY = this.yPosition - y;
-        if( deltaX <= 0 && deltaY <= 0 ){
-            this.turretAngle = 90;
+
+
+        //deltaX = Math.abs( deltaX );
+        //deltaY = Math.abs( deltaY );
+        // console.log('deltaX:', deltaX);
+        // console.log('deltaY: ', deltaY);
+        let theta = Math.atan2( deltaY, deltaX ) * degreeConversionFactor;
+        console.log('theta:', theta)
+        if( deltaX < 0 && deltaY < 0 ){
+            theta += 90;
         }
-        if( deltaX >= 0 && deltaY <= 0 ){
-            this.turretAngle = 180;
+        else if( deltaX > 0 && deltaY < 0 ){
+            theta += 180;
         }
-        if( deltaX >= 0 && deltaY >= 0 ){
-            this.turretAngle = 270;
+        else if( deltaX > 0 && deltaY > 0 ){
+            theta += 270;
         }
-        deltaX = Math.abs( deltaX );
-        deltaY = Math.abs( deltaY );
-        let theta = Math.atan( deltaX, deltaY ) * degreeConversionFactor;
-        this.turretAngle += theta;
+        this.turretAngle = theta - this.angleOfDirection;
         //deltaX and deltaY are the differneces of x and y coordinates from tank to mouse.
         //theta is the angle of the deltas to the mouse. must use if statements to correct angle so that it corilates with the correct quadrant of the screen
         //math is on meistertask
