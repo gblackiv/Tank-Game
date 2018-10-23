@@ -9,7 +9,6 @@ function initializeGame(){
     theGameScreen.createNewPlayerTank( { img: 'images/tankPic.png', xPosition: 0, yPosition: 25, angleOfDirection: 0, currentGameBoard: theGameScreen } );
     theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 300, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
     theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 500, yPosition: 100, angleOfDirection: 0, currentGameBoard: theGameScreen } );
-    theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 100, yPosition: 200, angleOfDirection: 0, currentGameBoard: theGameScreen } );
     theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 200, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
     attachEventHandlers();
 }
@@ -17,16 +16,17 @@ function initializeGame(){
 function attachEventHandlers(){
     $( document ).keydown( userKeyDownPresses );
     $( document ).keyup( userKeyUpPresses );
+    $( '#mainScreen' ).mousemove( mouseMoving );
 }
 function userKeyDownPresses( event ){
     switch( event.which ){
-        case 37:
+        case 65:
             theGameScreen.playerTank.toggleTurningLeftOn();
             break;
-        case 38: 
+        case 87: 
             theGameScreen.playerTank.toggleForwardMovementOn();
             break;
-        case 39:
+        case 68:
             theGameScreen.playerTank.toggleTurningRightOn();
             break;
         case 32: 
@@ -36,15 +36,20 @@ function userKeyDownPresses( event ){
 }
 function userKeyUpPresses( event ){
     switch( event.which ){
-        case 37:
+        case 65:
             theGameScreen.playerTank.toggleTurningLeftOff();
             break;
-        case 38:
+        case 87:
             theGameScreen.playerTank.toggleForwardMovementOff();
             break;
-        case 39:
+        case 68:
             theGameScreen.playerTank.toggleTurningRightOff();
             break;
     }
+}
+function mouseMoving( event ){
+    let relativeXPosition = event.clientX - $('#mainScreen').offset().left;
+    let relativeYPosition = event.clientY - $('#mainScreen').offset().top;
+    theGameScreen.playerTank.alignTurret( relativeXPosition, relativeYPosition );
 }
 
