@@ -3,6 +3,7 @@ class GameBoard {
 		this.shotsFiredArray = [];
 		this.playerTank = null;
 		this.otherTanks = [];
+		this.radarSelector  = null;
 	}
 	addBallToArray( cannonBallObj ){
 		this.shotsFiredArray.push( cannonBallObj );
@@ -40,5 +41,11 @@ class GameBoard {
 				}
 			}
 		}
+	}
+	renderRadar(){
+		const radarConfigObj = {
+			css: {}
+		}
+		const newRadar = $('<div>',)
 	}
 }
