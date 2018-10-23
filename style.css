@@ -75,7 +75,7 @@ html{
 #sweeper{
     position: relative;
     border-radius: 20%;
-    left: 50%;
+    left: 49%;
     top: 50%;
     transform-origin: top center;
     height: 50%;

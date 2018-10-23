@@ -18,6 +18,11 @@ class GameBoard {
 			}
 		}
 	}
+	createRadar( radarConfigObj ){
+		const newRadar = new Radar( radarConfigObj );
+		newRadar.render();
+		this.radarSelector = newRadar;
+	}
 	createNewPlayerTank( tankConfigObj ){
 		var newTank = new Tank( tankConfigObj );
 		newTank.render();
@@ -41,11 +46,5 @@ class GameBoard {
 				}
 			}
 		}
-	}
-	renderRadar(){
-		const radarConfigObj = {
-			css: {}
-		}
-		const newRadar = $('<div>',)
 	}
 }
