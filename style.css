@@ -14,18 +14,10 @@ html{
     position: relative;
     background-color: cadetblue;
 }
-header{
-    width: 100vw;
-    height: 10vh;
-}
 .sideBar{
     display: inline-block;
     width: 10vw;
     height: 70vh;
-}
-footer{
-    height: 10vh;
-    width: 100vw;
 }
 .tank{
     position: absolute;
@@ -64,4 +56,34 @@ footer{
     left: 25%;
     top: 40%;
     background-color: darkslategrey;
+}
+#radarContainer{
+    height: 125px;
+    width: 125px;
+    position: absolute;
+    left: 87%;
+    top: 7%;
+    border-radius: 50%;
+    background-color: green;
+    z-index: 1000;
+    opacity: 0.5;
+}
+@keyframes spin{
+    from {transform: rotate(0deg)}
+    to {transform: rotate(359deg)}
+}
+#sweeper{
+    position: relative;
+    border-radius: 20%;
+    left: 49%;
+    top: 50%;
+    transform-origin: top center;
+    height: 50%;
+    width: 5px;
+    background-color: rgb(0, 230, 0);
+    opacity: 1;
+    animation-name: spin;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
