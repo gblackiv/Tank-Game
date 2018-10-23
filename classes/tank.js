@@ -115,33 +115,11 @@ class Tank extends ScreenObjects{
         this.selector = $( '#'+this.randomID );
     }
     alignTurret(x, y){
-        //FIXME find the rotation of the turret using trig based off mouse and tank position
-        let deltaX = this.xPosition - x;
-        let deltaY = this.yPosition - y;
-
-
-        //deltaX = Math.abs( deltaX );
-        //deltaY = Math.abs( deltaY );
-        // console.log('deltaX:', deltaX);
-        // console.log('deltaY: ', deltaY);
-        let theta = Math.atan2( deltaY, deltaX ) * degreeConversionFactor;
-        console.log('theta:', theta)
-        if( deltaX < 0 && deltaY < 0 ){
-            theta += 90;
-        }
-        else if( deltaX > 0 && deltaY < 0 ){
-            theta += 180;
-        }
-        else if( deltaX > 0 && deltaY > 0 ){
-            theta += 270;
-        }
+        let deltaX = -(this.xPosition - x);
+        let deltaY = -(this.yPosition - y);
+        let theta = ( Math.atan2( deltaY, deltaX ) * degreeConversionFactor ) + 90;
         this.turretAngle = theta - this.angleOfDirection;
-        //deltaX and deltaY are the differneces of x and y coordinates from tank to mouse.
-        //theta is the angle of the deltas to the mouse. must use if statements to correct angle so that it corilates with the correct quadrant of the screen
-        //math is on meistertask
-        // var newXPosition = Math.sin( this.angleOfDirection * radiansConversionFactor ) * this.forwardSpeedPerSecond;
-        // var newYPosition = Math.cos( this.angleOfDirection * radiansConversionFactor ) * this.forwardSpeedPerSecond;
-        this.tankTurret.css( 'transform', `rotate(${theta}deg)` );
+        this.tankTurret.css( 'transform', `rotate(${this.turretAngle}deg)` );
     }
 }
 
