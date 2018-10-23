@@ -31,15 +31,12 @@ class Radar{
 		this.currentGameBoard.otherTanks.forEach( otherTank => {
 			let deltaX = -(this.playerTank.hitBox.x - otherTank.hitBox.x);
 			let deltaY = -(this.playerTank.hitBox.y - otherTank.hitBox.y);
-			// console.log('deltax:',deltaX);
-			// console.log('deltay:', deltaY);
 			let theta = ( Math.atan2( deltaY, deltaX ) * degreeConversionFactor );
 			if( theta < 0 ){
 				theta += 360;
 			}
 			console.log('theta:',theta);
 			if( (this.currentAngle + 5) > theta && theta > this.currentAngle ){
-				debugger;
 				console.log('target locked!');
 			}
 
