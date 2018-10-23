@@ -22,6 +22,7 @@ class GameBoard {
 		const newRadar = new Radar( radarConfigObj );
 		newRadar.render();
 		this.radarSelector = newRadar;
+		newRadar.startHeartbeat();
 	}
 	createNewPlayerTank( tankConfigObj ){
 		var newTank = new Tank( tankConfigObj );

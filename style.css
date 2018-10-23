@@ -68,22 +68,14 @@ html{
     z-index: 1000;
     opacity: 0.5;
 }
-@keyframes spin{
-    from {transform: rotate(0deg)}
-    to {transform: rotate(359deg)}
-}
 #sweeper{
     position: relative;
     border-radius: 20%;
     left: 49%;
     top: 50%;
-    transform-origin: top center;
-    height: 50%;
-    width: 5px;
+    transform-origin: left center;
+    height: 5px;
+    width: 50%;
     background-color: rgb(0, 230, 0);
     opacity: 1;
-    animation-name: spin;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
 }

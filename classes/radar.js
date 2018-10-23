@@ -1,18 +1,38 @@
 class Radar{
 	constructor( radarConfigObj ){
 		this.currentGameBoard = radarConfigObj.currentGameBoard;
-		this.currentRotation = null;
-		this.selector = null;
-
+		this.currentAngle = 0;
+		this.sweeper = null;
+		this.container = null;
+	}
+    startHeartbeat(){
+        if( this.heartbeat !== null){
+            this.stopHeartbeat();
+        }
+        this.heartbeat = setInterval( this.handleHeartbeat.bind( this ), this.heartbeatTimer );
+    }
+    stopHeartbeat(){
+        clearInterval(this.heartbeat);
+        this.heartbeat = null;
+	}
+	handleHeartbeat(){
+		this.spin();
+	}
+	spin(){
+		this.currentAngle += radarSpeed;
+		if( this.currentAngle === 360 ){
+			this.currentAngle = 0;
+		}
+		this.sweeper.css('transform', `rotate(${this.currentAngle}deg)`);
 	}
 	render(){
-		const container = $( '<section>', {
+		this.container = $( '<section>', {
 			id: 'radarContainer'
 		});
-		const sweeper = $( '<div>', {
+		this.sweeper = $( '<div>', {
 			id: 'sweeper'
 		});
-		container.append( sweeper );
-		$( 'body' ).prepend( container );
+		this.container.append( this.sweeper );
+		$( 'body' ).prepend( this.container );
 	}
 }

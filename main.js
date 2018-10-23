@@ -6,10 +6,10 @@ var shotsFired = [];
 
 function initializeGame(){
     theGameScreen = new GameBoard();
-    theGameScreen.createNewPlayerTank( { img: 'images/tankPic.png', xPosition: 50, yPosition: 55, angleOfDirection: 0, currentGameBoard: theGameScreen } );
-    theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 300, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
-    theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 500, yPosition: 100, angleOfDirection: 0, currentGameBoard: theGameScreen } );
-    theGameScreen.createNewTank( { img: 'images/tankPic.png', xPosition: 200, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+    theGameScreen.createNewPlayerTank( { xPosition: 50, yPosition: 55, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+    theGameScreen.createNewTank( { xPosition: 300, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+    theGameScreen.createNewTank( { xPosition: 500, yPosition: 100, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+    theGameScreen.createNewTank( { xPosition: 200, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
     theGameScreen.createRadar({currentGameBoard: theGameScreen});
     attachEventHandlers();
 }
