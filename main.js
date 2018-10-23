@@ -1,8 +1,5 @@
 $(document).ready(initializeGame)
-var playerTank;
-var dummyTank;
 var theGameScreen;
-var shotsFired = [];
 
 function initializeGame(){
     theGameScreen = new GameBoard();

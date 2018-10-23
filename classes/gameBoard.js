@@ -37,8 +37,8 @@ class GameBoard {
 		this.otherTanks.push( newTank );
 	}
 	removeTankFromGame( tankObj ){
-		if( tankObj === playerTank ){
-			playerTank = null;
+		if( tankObj === this.playerTank ){
+			this.playerTank = null;
 		}
 		else{
 			for( let tankSearch = 0; tankSearch < this.otherTanks.length; tankSearch++ ){

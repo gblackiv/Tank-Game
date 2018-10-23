@@ -9,15 +9,10 @@ html{
 }
 #mainScreen{
     display: inline-block;
-    width: 80vw;
-    height: 80vh;
+    width: 100vw;
+    height: 100vh;
     position: relative;
     background-color: cadetblue;
-}
-.sideBar{
-    display: inline-block;
-    width: 10vw;
-    height: 70vh;
 }
 .tank{
     position: absolute;

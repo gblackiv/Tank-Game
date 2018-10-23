@@ -85,9 +85,9 @@ class Tank extends ScreenObjects{
     }
     collisionDetection( cannonBallArray ){
         for( let collisionIndex = 0; collisionIndex < cannonBallArray.length; collisionIndex++ ){
-            if(  this.hitBox.top > cannonBallArray[ collisionIndex ].hitBox.bottom ||
-                 this.hitBox.bottom < cannonBallArray[ collisionIndex ].hitBox.top ||
-                 this.hitBox.left > cannonBallArray[ collisionIndex ].hitBox.right ||
+            if( this.hitBox.top > cannonBallArray[ collisionIndex ].hitBox.bottom ||
+                this.hitBox.bottom < cannonBallArray[ collisionIndex ].hitBox.top ||
+                this.hitBox.left > cannonBallArray[ collisionIndex ].hitBox.right ||
                 this.hitBox.right < cannonBallArray[ collisionIndex ].hitBox.left  ){
                 }
                 else{
