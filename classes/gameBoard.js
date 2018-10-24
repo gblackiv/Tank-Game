@@ -25,6 +25,7 @@ class GameBoard {
 		newRadar.startHeartbeat();
 	}
 	createNewPlayerTank( tankConfigObj ){
+		tankConfigObj.class = 'playerTank tankSquare';
 		var newTank = new Tank( tankConfigObj );
 		newTank.render();
 		newTank.startHeartbeat();

@@ -8,10 +8,8 @@ class CannonBall extends ScreenObjects{
         this.configObj = {
             'class': 'cannonBall',
             id: this.randomID,
-            src: this.img,
             css: { 'left': this.xPosition + 'px',
                     'top': this.yPosition +'px' },
-            alt: 'cannon ball img'
         }
         this.selector = null;
     }
@@ -36,7 +34,7 @@ class CannonBall extends ScreenObjects{
         }
     }
     render(){
-        this.ball = $( '<img>', this.configObj );
+        this.ball = $( '<div>', this.configObj );
         $( '#mainScreen' ).append(this.ball );
         this.selector = $( '#'+this.randomID );
     }
