@@ -35,9 +35,15 @@ class Radar{
 			if( theta < 0 ){
 				theta += 360;
 			}
-			console.log('theta:',theta);
-			if( (this.currentAngle + 5) > theta && theta > this.currentAngle ){
-				console.log('target locked!');
+			if( (this.currentAngle + .5) > theta && theta > this.currentAngle ){
+				if( ( deltaX + deltaY ) / 2 < radarRange ){
+					const blip = new Blip( {
+						radar: this.container,
+						left: ( deltaX / 20 ),
+						top: ( deltaY / 20 )
+						} ) ;
+					blip.render();
+				}
 			}
 
 		});
@@ -53,11 +59,3 @@ class Radar{
 		$( 'body' ).prepend( this.container );
 	}
 }
-
-/**alignTurret(x, y){
-        let deltaX = -(this.xPosition - x);
-        let deltaY = -(this.yPosition - y);
-        let theta = ( Math.atan2( deltaY, deltaX ) * degreeConversionFactor ) + 90;
-        this.turretAngle = theta - this.angleOfDirection;
-        this.tankTurret.css( 'transform', `rotate(${this.turretAngle}deg)` );
-    } */
