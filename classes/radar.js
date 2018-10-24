@@ -36,11 +36,11 @@ class Radar{
 				theta += 360;
 			}
 			if( (this.currentAngle + .5) > theta && theta > this.currentAngle ){
-				if( ( deltaX + deltaY ) / 2 < radarRange ){
+				if( ( Math.abs( deltaX ) + Math.abs( deltaY ) ) / 2 < radarRange ){
 					const blip = new Blip( {
 						radar: this.container,
-						left: ( deltaX / 20 ),
-						top: ( deltaY / 20 )
+						left: ( deltaX / radarBlipRatio ),
+						top: ( deltaY / radarBlipRatio )
 						} ) ;
 					blip.render();
 				}
