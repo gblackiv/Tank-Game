@@ -22,8 +22,10 @@ html{
     transform-origin: (50%, 50%);
 }
 .cannonBall{
-    height: 1%;
-    width: 1%;
+    height: 1vh;
+    width: 1vh;
+    border-radius: 50%;
+    background-color: black;
     position: absolute;
 }
 .tankSquare{
@@ -52,6 +54,9 @@ html{
     left: 25%;
     top: 40%;
     background-color: darkslategrey;
+}
+.tankSquare.playerTank{
+    background-color: darkgoldenrod;
 }
 #radarContainer{
     height: 125px;

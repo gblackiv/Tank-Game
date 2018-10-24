@@ -7,7 +7,7 @@ class Tank extends ScreenObjects{
         this.rateOfFireBoolean = false;
         this.turretAngle = 0;
         this.configObj = {
-            'class': 'tankSquare', 
+            class: tankOptions.class || 'tankSquare', 
             id: this.randomID,
             src: this.img,
             css: { 
@@ -15,8 +15,8 @@ class Tank extends ScreenObjects{
                 left: this.xPosition+'px', 
                 transition: `transform ${this.heartbeatTimer} linear, 
                 left ${this.heartbeatTimer} linear, 
-                right ${this.heartbeatTimer} linear` },
-                alt: 'tank Img',
+                right ${this.heartbeatTimer} linear` 
+                },
         }
         this.selector = null;
     }
@@ -42,7 +42,6 @@ class Tank extends ScreenObjects{
         var newCannonBall = new CannonBall( {
             xPosition: this.xPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 0 ] ) + ( Math.sin( (this.turretAngle + this.angleOfDirection) * radiansConversionFactor ) * ( this.hitBox.width / 1.1 ) ), 
             yPosition: this.yPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 1 ] ) - ( Math.cos( (this.turretAngle + this.angleOfDirection) * radiansConversionFactor ) * ( this.hitBox.height / 1.1 ) ), 
-            img: 'images/cannonBall.png',
             angleOfDirection: this.angleOfDirection + this.turretAngle,
             currentGameBoard: this.currentGameBoard
         });
