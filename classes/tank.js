@@ -18,6 +18,7 @@ class Tank extends ScreenObjects{
                 right ${this.heartbeatTimer} linear` 
                 },
         }
+        this.gameBoardArrayPosition = tankOptions.gameBoardArrayPosition;
         this.selector = null;
     }
     handleHeartbeat(){
