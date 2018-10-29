@@ -32,6 +32,7 @@ class GameBoard {
 		this.playerTank = newTank;
 	}
 	createNewTank( tankConfigObj ){
+		tankConfigObj.gameBoardArrayPosition = this.otherTanks.length	//adds into the constructor the position in the array that the other tank will be assigned to
 		var newTank = new Tank( tankConfigObj );
 		newTank.render();
 		newTank.startHeartbeat();
@@ -42,10 +43,9 @@ class GameBoard {
 			this.playerTank = null;
 		}
 		else{
-			for( let tankSearch = 0; tankSearch < this.otherTanks.length; tankSearch++ ){
-				if( tankObj === this.otherTanks[ tankSearch ] ){
-					this.otherTanks.splice( tankSearch, 1 );
-				}
+			this.otherTanks.splice( tankObj.gameBoardArrayPosition, 1 );
+			for( let tankSearch = tankObj.gameBoardArrayPosition; tankSearch < this.otherTanks.length; tankSearch++ ){
+				this.otherTanks[ tankSearch ].gameBoardArrayPosition--;
 			}
 		}
 	}
