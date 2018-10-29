@@ -43,10 +43,9 @@ class GameBoard {
 			this.playerTank = null;
 		}
 		else{
-			for( let tankSearch = 0; tankSearch < this.otherTanks.length; tankSearch++ ){
-				if( tankObj === this.otherTanks[ tankSearch ] ){
-					this.otherTanks.splice( tankSearch, 1 );
-				}
+			this.otherTanks.splice( tankObj.gameBoardArrayPosition, 1 );
+			for( let tankSearch = tankObj.gameBoardArrayPosition; tankSearch < this.otherTanks.length; tankSearch++ ){
+				this.otherTanks[ tankSearch ].gameBoardArrayPosition--;
 			}
 		}
 	}
