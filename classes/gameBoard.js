@@ -33,9 +33,9 @@ class GameBoard {
 	}
 	createNewTank( tankConfigObj ){
 		tankConfigObj.gameBoardArrayPosition = this.otherTanks.length	//adds into the constructor the position in the array that the other tank will be assigned to
-		var newTank = new Tank( tankConfigObj );
+		var newTank = new TankBot( tankConfigObj );
 		newTank.render();
-		newTank.startHeartbeat();
+		newTank.getHitBox();
 		this.otherTanks.push( newTank );
 	}
 	removeTankFromGame( tankObj ){
