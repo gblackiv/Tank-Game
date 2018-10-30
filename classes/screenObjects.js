@@ -13,11 +13,17 @@ class ScreenObjects{
         this.movementsPerSecond = 1000 / this.heartbeatTimer;
         this.forwardSpeedPerSecond = this.forwardSpeed / this.movementsPerSecond;
     }
-    startHeartbeat(){
+    startHeartbeat( bot = false ){
         if( this.heartbeat !== null){
+            console.log('should be once',this)
             this.stopHeartbeat();
         }
-        this.heartbeat = setInterval( this.handleHeartbeat.bind( this ), this.heartbeatTimer );
+        if( bot ){
+            this.heartbeat = setInterval( this.handleAIHeartbeat.bind( this ), this.heartbeatTimer );
+        }
+        else{
+            this.heartbeat = setInterval( this.handleHeartbeat.bind( this ), this.heartbeatTimer );
+        }
     }
     stopHeartbeat(){
         clearInterval(this.heartbeat);
