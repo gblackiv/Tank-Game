@@ -15,7 +15,6 @@ class ScreenObjects{
     }
     startHeartbeat( bot = false ){
         if( this.heartbeat !== null){
-            console.log('should be once',this)
             this.stopHeartbeat();
         }
         if( bot ){
