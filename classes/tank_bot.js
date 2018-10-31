@@ -18,18 +18,22 @@ class TankBot extends Tank{
 		let deltaX = -(this.hitBox.x - this.currentGameBoard.playerTank.hitBox.x);
 		let deltaY = -(this.hitBox.y - this.currentGameBoard.playerTank.hitBox.y);
 		let theta = ( Math.atan2( deltaY, deltaX ) * degreeConversionFactor ) + 90;
-		console.log(theta)
-		if( this.angleOfDirection > theta ){
+		this.facePlayerTank( theta );
+	}
+	facePlayerTank( theta ){
+		console.log(this.angleOfDirection)
+		if( this.angleOfDirection + 5 > theta ){
 			this.toggleTurningLeftOn();
 		}
 		else{
 			this.toggleTurningLeftOff();
 		}
-		if( this.angleOfDirection < theta ){
+		if( this.angleOfDirection - 5 < theta ){
 			this.toggleTurningRightOn();
 		}
 		else{
 			this.toggleTurningRightOff();
 		}
 	}
+
 }
