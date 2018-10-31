@@ -3,40 +3,39 @@ body, html{
     overflow: hidden;
     width: 100vw;
     height: 100vh;
+    cursor: crosshair;
 }
 html{
     font-size: 1vw;
 }
 #mainScreen{
     display: inline-block;
-    width: 80vw;
-    height: 80vh;
+    width: 100vw;
+    height: 100vh;
     position: relative;
     background-color: cadetblue;
 }
-header{
-    width: 100vw;
-    height: 10vh;
-}
-.sideBar{
-    display: inline-block;
-    width: 10vw;
-    height: 70vh;
-}
-footer{
-    height: 10vh;
-    width: 100vw;
+.cannonBall{
+    height: 1vh;
+    width: 1vh;
+    border-radius: 50%;
+    background-color: black;
+    position: absolute;
 }
 .tank{
     position: absolute;
     height: 10%;
     width: auto;
-    transform-origin: (50%, 50%);
+    transform-origin: ( 50%, 50% );
 }
-.cannonBall{
-    height: 1%;
-    width: 1%;
+.frontMarker{
     position: absolute;
+    height: 10%;
+    width: 10%;
+    top: 0;
+    left: 50%;
+    transform-origin: ( 50%, 50% );
+    background-color: white;
 }
 .tankSquare{
     height: 7%;
@@ -59,9 +58,43 @@ footer{
 .tankTurret{
     width: 50%;
     height: 35%;
-    transform-origin: (50%, 50%);
+    transform-origin: ( 50%, 50% );
     position: absolute;
     left: 25%;
     top: 40%;
     background-color: darkslategrey;
+}
+.tankSquare.playerTank{
+    background-color: darkgoldenrod;
+}
+#radarContainer{
+    height: 125px;
+    width: 125px;
+    position: absolute;
+    left: 87%;
+    top: 7%;
+    border-radius: 50%;
+    background-color: green;
+    z-index: 1000;
+    opacity: 0.5;
+}
+#sweeper{
+    position: relative;
+    border-radius: 20%;
+    left: 49%;
+    top: 50%;
+    transform-origin: left center;
+    height: 5px;
+    width: 50%;
+    background-color: rgb(0, 230, 0);
+    opacity: 1;
+}
+.blip{
+    position: absolute;
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    background-color: red;
+    opacity: 1;
+
 }

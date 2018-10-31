@@ -3,6 +3,7 @@ class GameBoard {
 		this.shotsFiredArray = [];
 		this.playerTank = null;
 		this.otherTanks = [];
+		this.radarSelector  = null;
 	}
 	addBallToArray( cannonBallObj ){
 		this.shotsFiredArray.push( cannonBallObj );
@@ -17,27 +18,34 @@ class GameBoard {
 			}
 		}
 	}
+	createRadar( radarConfigObj ){
+		const newRadar = new Radar( radarConfigObj );
+		newRadar.render();
+		this.radarSelector = newRadar;
+		newRadar.startHeartbeat();
+	}
 	createNewPlayerTank( tankConfigObj ){
+		tankConfigObj.class = 'playerTank tankSquare';
 		var newTank = new Tank( tankConfigObj );
 		newTank.render();
 		newTank.startHeartbeat();
 		this.playerTank = newTank;
 	}
 	createNewTank( tankConfigObj ){
-		var newTank = new Tank( tankConfigObj );
+		tankConfigObj.gameBoardArrayPosition = this.otherTanks.length	//adds into the constructor the position in the array that the other tank will be assigned to
+		var newTank = new TankBot( tankConfigObj );
 		newTank.render();
-		newTank.startHeartbeat();
+		newTank.getHitBox();
 		this.otherTanks.push( newTank );
 	}
 	removeTankFromGame( tankObj ){
-		if( tankObj === playerTank ){
-			playerTank = null;
+		if( tankObj === this.playerTank ){
+			this.playerTank = null;
 		}
 		else{
-			for( let tankSearch = 0; tankSearch < this.otherTanks.length; tankSearch++ ){
-				if( tankObj === this.otherTanks[ tankSearch ] ){
-					this.otherTanks.splice( tankSearch, 1 );
-				}
+			this.otherTanks.splice( tankObj.gameBoardArrayPosition, 1 );
+			for( let tankSearch = tankObj.gameBoardArrayPosition; tankSearch < this.otherTanks.length; tankSearch++ ){
+				this.otherTanks[ tankSearch ].gameBoardArrayPosition--;
 			}
 		}
 	}
