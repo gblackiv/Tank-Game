@@ -15,18 +15,27 @@ html{
     position: relative;
     background-color: cadetblue;
 }
-.tank{
-    position: absolute;
-    height: 10%;
-    width: auto;
-    transform-origin: (50%, 50%);
-}
 .cannonBall{
     height: 1vh;
     width: 1vh;
     border-radius: 50%;
     background-color: black;
     position: absolute;
+}
+.tank{
+    position: absolute;
+    height: 10%;
+    width: auto;
+    transform-origin: ( 50%, 50% );
+}
+.frontMarker{
+    position: absolute;
+    height: 10%;
+    width: 10%;
+    top: 0;
+    left: 50%;
+    transform-origin: ( 50%, 50% );
+    background-color: white;
 }
 .tankSquare{
     height: 7%;
@@ -49,7 +58,7 @@ html{
 .tankTurret{
     width: 50%;
     height: 35%;
-    transform-origin: (50%, 50%);
+    transform-origin: ( 50%, 50% );
     position: absolute;
     left: 25%;
     top: 40%;

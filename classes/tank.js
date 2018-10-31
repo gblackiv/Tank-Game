@@ -106,8 +106,10 @@ class Tank extends ScreenObjects{
         this.tankGun = $( '<div>', { 'class': 'tankGun' } );
         this.tankTurret = $( '<div>', { 'class': 'tankTurret' } );
         this.tank = $( '<div>', this.configObj );
+        this.frontMarker = $( '<div>', { 'class': 'frontMarker' } );
         this.tankTurret.append( this.tankGun );
         this.tank.append( this.tankTurret );
+        this.tank.prepend( this.frontMarker );
         $( '#mainScreen' ).append( this.tank );
         this.selector = $( '#'+this.randomID );
     }
