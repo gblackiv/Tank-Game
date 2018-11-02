@@ -59,6 +59,6 @@ class Radar{
 			id: 'sweeper'
 		});
 		this.container.append( this.sweeper );
-		$( 'body' ).prepend( this.container );
+		$( '#mainScreen' ).prepend( this.container );
 	}
 }

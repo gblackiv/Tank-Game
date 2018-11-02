@@ -15,6 +15,7 @@ function attachEventHandlers(){
     $( document ).keydown( userKeyDownPresses );
     $( document ).keyup( userKeyUpPresses );
     $( '#mainScreen' ).mousemove( mouseMoving );
+    $( '#startGameButton').click( startGame );
 }
 function userKeyDownPresses( event ){
     switch( event.which ){
@@ -50,4 +51,8 @@ function mouseMoving( event ){
     let relativeYPosition = event.clientY - $('#mainScreen').offset().top;
     theGameScreen.playerTank.alignTurret( relativeXPosition, relativeYPosition );
 }
-
+function startGame(){
+    $( '#startScreen' ).addClass( 'hidden' );
+    // $( '#startScreen' ).addClass( 'hidden' );
+    $( '#mainScreen' ).removeClass( 'hidden' );
+}
