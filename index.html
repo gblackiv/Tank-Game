@@ -17,8 +17,23 @@
     <script src="classes/tank_bot.js" defer></script>
 </head>
 <body>
-    <div class="sideBar"></div>
-    <div id="mainScreen"></div>
-    <div class="sideBar"></div>
+    <div id="startScreen">
+        <h1 id="title">Tanks!</h1>
+        <p id="description">Derived from my passion for games, this applicaton is built using Javascript, jQuery, and CSS.</p>
+        <div id="instructions">
+            <p>The goal of this game is to destroy the tank bots before they destroy you!</p>
+            <p id="controls">Controls to play:</p>
+            <div id="listContainer">
+                <ul>
+                    <li>W to move in the direction you are facing</li>
+                    <li>A and D to turn left and right</li>
+                    <li>Mouse to aim</li>
+                    <li>Space to shoot</li>
+                </ul>
+            </div>
+        </div>
+        <button id="startGameButton">Press to Begin!</button>
+    </div>
+    <div id="mainScreen" class="hidden"></div>
 </body>
 </html>

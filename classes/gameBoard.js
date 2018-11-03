@@ -48,5 +48,18 @@ class GameBoard {
 				this.otherTanks[ tankSearch ].gameBoardArrayPosition--;
 			}
 		}
+		console.log(this.otherTanks)
+		if( !this.playerTank ){
+			this.playerDiedModal();
+		}
+		if( !this.otherTanks[0] ){
+			this.allBotsDestroyed();
+		}
+	}
+	playerDiedModal(){
+		console.warn('player died');
+	}
+	allBotsDestroyed(){
+		console.warn('bots dead');
 	}
 }

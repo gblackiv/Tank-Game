@@ -2,12 +2,6 @@ $(document).ready(initializeGame)
 var theGameScreen;
 
 function initializeGame(){
-    theGameScreen = new GameBoard();
-    theGameScreen.createNewPlayerTank( { xPosition: 50, yPosition: 55, angleOfDirection: 0, currentGameBoard: theGameScreen } );
-    theGameScreen.createNewTank( { xPosition: 300, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
-    // theGameScreen.createNewTank( { xPosition: 500, yPosition: 100, angleOfDirection: 0, currentGameBoard: theGameScreen } );
-    // theGameScreen.createNewTank( { xPosition: 200, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
-    theGameScreen.createRadar({currentGameBoard: theGameScreen});
     attachEventHandlers();
 }
 
@@ -15,6 +9,7 @@ function attachEventHandlers(){
     $( document ).keydown( userKeyDownPresses );
     $( document ).keyup( userKeyUpPresses );
     $( '#mainScreen' ).mousemove( mouseMoving );
+    $( '#startGameButton').click( changeScreens );
 }
 function userKeyDownPresses( event ){
     switch( event.which ){
@@ -50,4 +45,16 @@ function mouseMoving( event ){
     let relativeYPosition = event.clientY - $('#mainScreen').offset().top;
     theGameScreen.playerTank.alignTurret( relativeXPosition, relativeYPosition );
 }
-
+function changeScreens(){
+    $( '#startScreen' ).addClass( 'hidden' );
+    $( '#mainScreen' ).removeClass( 'hidden' );
+    startGame();
+}
+function startGame(){
+    theGameScreen = new GameBoard();
+    theGameScreen.createNewPlayerTank( { xPosition: 50, yPosition: 55, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+    theGameScreen.createNewTank( { xPosition: 300, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+    theGameScreen.createNewTank( { xPosition: 500, yPosition: 100, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+    theGameScreen.createNewTank( { xPosition: 200, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
+    theGameScreen.createRadar({currentGameBoard: theGameScreen});
+}
