@@ -19,14 +19,18 @@
 <body>
     <div id="startScreen">
         <h1 id="title">Tanks!</h1>
-        <h3 id="description">Derived from my passion for games, this applicaton is built using Javascript, jQuery, and CSS.</h3>
+        <p id="description">Derived from my passion for games, this applicaton is built using Javascript, jQuery, and CSS.</p>
         <div id="instructions">
-            <h3>The goal of this game is to destroy the tank bots before they destroy you!</h3>
-            <ul>Controls to play:
-                <li>W to move in the direction you are facing</li>
-                <li>A and D to turn left and right</li>
-                <li>Space to shoot</li>
-            </ul>
+            <p>The goal of this game is to destroy the tank bots before they destroy you!</p>
+            <p id="controls">Controls to play:</p>
+            <div id="listContainer">
+                <ul>
+                    <li>W to move in the direction you are facing</li>
+                    <li>A and D to turn left and right</li>
+                    <li>Mouse to aim</li>
+                    <li>Space to shoot</li>
+                </ul>
+            </div>
         </div>
         <button id="startGameButton">Press to Begin!</button>
     </div>

@@ -3,13 +3,13 @@ body, html{
     overflow: hidden;
     width: 100vw;
     height: 100vh;
-    cursor: crosshair;
 }
 html{
     font-size: 1vw;
 }
 #mainScreen{
     display: inline-block;
+    cursor: crosshair;
     width: 100vw;
     height: 100vh;
     position: relative;
@@ -96,7 +96,45 @@ html{
     border-radius: 50%;
     background-color: red;
     opacity: 1;
-
+}
+#startScreen{
+    height: 100vh;
+    width: 100vw;
+    background-color: lightgrey;
+}
+#title{
+    margin: 0;
+    font-size: 10vh;
+    padding-top: 7%;
+    text-align: center;
+}
+#description, #instructions{
+    font-size: 3vh;
+    text-align: center;
+}
+#controls{
+    margin-bottom: 0;
+}
+#listContainer{
+    display: inline-block;
+    width: 50%;
+    margin: 0;
+}
+li{
+    padding-top: 2%;
+    text-align: left;
+}
+#startGameButton:hover{
+    box-shadow: 3px 3px 5px 6px black;
+}
+#startGameButton{
+    margin-top: 30px;
+    height: 10%;
+    width: 15%;
+    font-size: 3vh;
+    position: relative;
+    left: 50%;
+    transform: translate( -50%, 0)
 }
 .hidden{
     display: none !important;
