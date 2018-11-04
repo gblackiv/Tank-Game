@@ -4,6 +4,7 @@ class GameBoard {
 		this.playerTank = null;
 		this.otherTanks = [];
 		this.radarSelector  = null;
+		this.modal = $( '.modalContainer' );
 	}
 	addBallToArray( cannonBallObj ){
 		this.shotsFiredArray.push( cannonBallObj );
@@ -36,6 +37,7 @@ class GameBoard {
 		var newTank = new TankBot( tankConfigObj );
 		newTank.render();
 		newTank.getHitBox();
+		newTank.startHeartbeat( true );
 		this.otherTanks.push( newTank );
 	}
 	removeTankFromGame( tankObj ){
@@ -48,18 +50,60 @@ class GameBoard {
 				this.otherTanks[ tankSearch ].gameBoardArrayPosition--;
 			}
 		}
-		console.log(this.otherTanks)
 		if( !this.playerTank ){
 			this.playerDiedModal();
 		}
-		if( !this.otherTanks[0] ){
+		if( !this.otherTanks[ 0 ] ){
 			this.allBotsDestroyed();
 		}
 	}
 	playerDiedModal(){
-		console.warn('player died');
+		this.modal.removeClass( 'hidden' );
+		$( '.modalButton' ).off( 'click' );
+		const newPlayerConfigObj = {
+			xPosition: randomNumberGenerator( window.innerWidth ),
+			yPosition: randomNumberGenerator( window.innerHeight ),
+			angleOfDirection: 0,
+			currentGameBoard: this
+		};
+		$( '.modalHeader p' ).text( 'You lost...' );
+		$( '.modalBody' ).text( "The tank bots destroyed you!" );
+		$( '#modalButton1' ).addClass( 'hidden' );
+		$( '#modalButton3' ).addClass( 'hidden' );
+		$( '#modalButton2' ).click( () => {
+			this.createNewPlayerTank( newPlayerConfigObj );
+			this.modal.addClass( 'hidden' );
+		} );
+		$( '#modalButton2' ).text( 'Respawn' );
 	}
 	allBotsDestroyed(){
-		console.warn('bots dead');
+		this.modal.removeClass( 'hidden' );
+		$( '.modalButton' ).off( 'click' );
+		$( '.modalHeader p' ).text( 'You Won!' );
+		$( '.modalBody' ).text( "You've destroyed the enemy tanks! Choose how many new tanks you want to spawn." );
+		$( '#modalButton1' ).removeClass( 'hidden' );
+		$( '#modalButton3' ).removeClass( 'hidden' );
+		$( '#modalButton2' ).click( () => {
+			this.createMultipleTanks( 2 );
+		} );
+		$( '#modalButton3' ).click( () => {
+			this.createMultipleTanks( 3 );
+		} );
+		$( '#modalButton1' ).click( () => {
+			this.createMultipleTanks( 1 );
+		} );
+	}
+	createMultipleTanks( howManyTanks ){
+		for( let tankNumber = 0; tankNumber < howManyTanks; tankNumber++ ){
+			const tankConfigObj = {
+				xPosition: randomNumberGenerator( window.innerWidth ),
+				yPosition: randomNumberGenerator( window.innerHeight ),
+				angleOfDirection: 0,
+				currentGameBoard: this
+			};
+			this.createNewTank( tankConfigObj );
+		}
+		this.modal.addClass( 'hidden' );
+
 	}
 }
