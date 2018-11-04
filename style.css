@@ -134,7 +134,64 @@ li{
     font-size: 3vh;
     position: relative;
     left: 50%;
-    transform: translate( -50%, 0)
+    transform: translate( -50%, -50% );
+}
+@keyframes modalAnimation{
+    0% {
+        top: 0%;
+    }
+    100% {
+        top: 30%;
+    }
+}
+.modalContainer{
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    transform: translate( -50%, -50% );
+    height: 30%;
+    width: 25%;
+    background-color: red;
+    border: 2px solid black;
+    animation-name: modalAnimation;
+    animation-duration: 1000ms;
+    animation-fill-mode: forwards;
+}
+.modalHeader{
+    height: 25%;
+    background-color: blueviolet;
+    font-size: 5vh;
+    padding-left: 5%;
+    padding-top: 2%;
+}
+.modalHeader button{
+    float: right;
+    margin-top: 0px;
+    margin-right: 10px;
+    font-size: 2vh;
+}
+.modalButtons{
+    position: relative;
+}
+.modalButton{
+    position: absolute;
+    width: 30%;
+    text-align: center;
+    font-size: 3vh;
+}
+#modalButton1{
+    left: 4%;
+}
+#modalButton2{
+    left: 35%;
+}
+#modalButton3{
+    left: 66%;
+}
+.modalBody{
+    padding: 5% 10%;
+    font-size: 3vh;
+    text-align: center;
 }
 .hidden{
     display: none !important;
