@@ -43,8 +43,6 @@ html{
     position: absolute;
     transform-origin: ( 50%, 50% );
     background-color: forestgreen;
-    left: 20%;
-    top: 20%;
 }
 .tankGun{
     background-color: darkslategrey;
@@ -124,8 +122,8 @@ li{
     padding-top: 2%;
     text-align: left;
 }
-#startGameButton:hover{
-    box-shadow: 3px 3px 5px 6px black;
+button:hover{
+    box-shadow: 2px 2px 3px 4px black;
 }
 #startGameButton{
     margin-top: 30px;
@@ -160,13 +158,17 @@ li{
 .modalHeader{
     height: 25%;
     background-color: blueviolet;
+}
+.modalHeader p{
+    display: inline-block;
     font-size: 5vh;
     padding-left: 5%;
     padding-top: 2%;
+    margin: 0;
 }
 .modalHeader button{
     float: right;
-    margin-top: 0px;
+    margin-top: 10px;
     margin-right: 10px;
     font-size: 2vh;
 }
