@@ -71,7 +71,12 @@ class GameBoard {
 		$( '#modalButton1' ).addClass( 'hidden' );
 		$( '#modalButton3' ).addClass( 'hidden' );
 		$( '#modalButton2' ).click( () => {
+			this.radarSelector.destroy();
+			delete this.radarSelector;
 			this.createNewPlayerTank( newPlayerConfigObj );
+			this.createRadar( {
+				currentGameBoard: this
+			} )
 			this.modal.addClass( 'hidden' );
 		} );
 		$( '#modalButton2' ).text( 'Respawn' );
@@ -83,7 +88,7 @@ class GameBoard {
 		$( '.modalBody' ).text( "You've destroyed the enemy tanks! Choose how many new tanks you want to spawn." );
 		$( '#modalButton1' ).removeClass( 'hidden' );
 		$( '#modalButton3' ).removeClass( 'hidden' );
-		$( '#modalButton2' ).click( () => {
+		$( '#modalButton2' ).text( 'Two' ).click( () => {
 			this.createMultipleTanks( 2 );
 		} );
 		$( '#modalButton3' ).click( () => {
