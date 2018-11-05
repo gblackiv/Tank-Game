@@ -149,7 +149,7 @@ button:hover{
     transform: translate( -50%, -50% );
     height: 30%;
     width: 25%;
-    background-color: red;
+    background-color: rgb(101, 140, 172);
     border: 2px solid black;
     animation-name: modalAnimation;
     animation-duration: 1000ms;
@@ -157,7 +157,6 @@ button:hover{
 }
 .modalHeader{
     height: 25%;
-    background-color: blueviolet;
 }
 .modalHeader p{
     display: inline-block;
