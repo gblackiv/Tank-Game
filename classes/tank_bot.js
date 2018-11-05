@@ -13,7 +13,9 @@ class TankBot extends Tank{
 			this.turnRight();
 		}
 		this.moveForward();
-		this.shoot();
+		if( this.currentGameBoard.playerTank ){
+			this.shoot();
+		}
 	}
 	scan(){
 		if( !this.currentGameBoard.playerTank ){
