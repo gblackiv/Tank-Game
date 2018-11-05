@@ -39,7 +39,7 @@ class Tank extends ScreenObjects{
             return;
         }
         this.rateOfFireBoolean = true;
-        soundsObj.tankCannon.play();
+        //soundsObj.tankCannon.play();
         var newCannonBall = new CannonBall( {
             xPosition: this.xPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 0 ] ) + ( Math.sin( (this.turretAngle + this.angleOfDirection) * radiansConversionFactor ) * ( this.hitBox.width / 1.1 ) ), 
             yPosition: this.yPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 1 ] ) - ( Math.cos( (this.turretAngle + this.angleOfDirection) * radiansConversionFactor ) * ( this.hitBox.height / 1.1 ) ), 
@@ -93,7 +93,7 @@ class Tank extends ScreenObjects{
             else{
                 this.destroyTank();
                 cannonBallArray[ collisionIndex ].destroyCannonBall();
-                soundsObj.tankDeath.play();
+                //soundsObj.tankDeath.play();
             }
         }
     }
