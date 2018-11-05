@@ -10,13 +10,12 @@ function attachEventHandlers(){
     $( document ).keyup( userKeyUpPresses );
     $( '#mainScreen' ).mousemove( mouseMoving );
     $( '#startGameButton').click( changeScreens );
-    $( '.modalClose' ).click( modalClose );
 }
 function modalClose(){
     $( '.modalContainer' ).addClass( 'hidden' );
 }
 function userKeyDownPresses( event ){
-    if( !theGameScreen.playerTank ){
+    if( typeof theGameScreen === 'undefined' || typeof theGameScreen.playerTank === 'undefined' || !theGameScreen.playerTank ){
         return;
     }
     switch( event.which ){
@@ -35,7 +34,7 @@ function userKeyDownPresses( event ){
     }
 }
 function userKeyUpPresses( event ){
-    if( !theGameScreen.playerTank ){
+    if( typeof theGameScreen === 'undefined' || typeof theGameScreen.playerTank === 'undefined' || !theGameScreen.playerTank ){
         return;
     }
     switch( event.which ){
@@ -51,7 +50,7 @@ function userKeyUpPresses( event ){
     }
 }
 function mouseMoving( event ){
-    if( !theGameScreen.playerTank ){
+    if( typeof theGameScreen === 'undefined' || typeof theGameScreen.playerTank === 'undefined' || !theGameScreen.playerTank ){
         return;
     }
     let relativeXPosition = event.clientX - $('#mainScreen').offset().left;
