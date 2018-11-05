@@ -10,7 +10,6 @@ function attachEventHandlers(){
     $( document ).keyup( userKeyUpPresses );
     $( '#mainScreen' ).mousemove( mouseMoving );
     $( '#startGameButton').click( changeScreens );
-    $( '.modalClose' ).click( modalClose );
 }
 function modalClose(){
     $( '.modalContainer' ).addClass( 'hidden' );
