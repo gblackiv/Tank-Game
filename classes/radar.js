@@ -16,6 +16,10 @@ class Radar{
         clearInterval(this.heartbeat);
         this.heartbeat = null;
 	}
+	destroy(){
+		this.stopHeartbeat();
+		this.container.remove();
+	}
 	handleHeartbeat(){
 		this.spin();
 		this.scan();

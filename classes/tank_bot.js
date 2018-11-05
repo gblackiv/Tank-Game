@@ -13,8 +13,12 @@ class TankBot extends Tank{
 			this.turnRight();
 		}
 		this.moveForward();
+		this.shoot();
 	}
 	scan(){
+		if( !this.currentGameBoard.playerTank ){
+			return;
+		}
 		let deltaX = -(this.hitBox.x - this.currentGameBoard.playerTank.hitBox.x);
 		let deltaY = -(this.hitBox.y - this.currentGameBoard.playerTank.hitBox.y);
 		let theta = ( Math.atan2( deltaY, deltaX ) * degreeConversionFactor );
@@ -28,6 +32,7 @@ class TankBot extends Tank{
 		else{
 			this.changeFacing( theta + 90 );
 		}
+		this.pointTurret( theta + 90 );
 	}
 	changeFacing( theta ){
 		if( this.angleOfDirection + 5 > theta ){
@@ -42,6 +47,10 @@ class TankBot extends Tank{
 		else{
 			this.toggleTurningRightOff();
 		}
+	}
+	pointTurret( theta ){
+		this.turretAngle = theta - this.angleOfDirection;
+		this.tankTurret.css( 'transform', `rotate(${this.turretAngle}deg)` );
 	}
 
 }

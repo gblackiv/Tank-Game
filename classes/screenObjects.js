@@ -9,7 +9,7 @@ class ScreenObjects{
         this.hitBox = null;
         this.heartbeatTimer = globalHeartbeatTimer;
         this.heartbeat = null;
-        this.forwardSpeed = 75;
+        this.forwardSpeed = tankSpeed;
         this.movementsPerSecond = 1000 / this.heartbeatTimer;
         this.forwardSpeedPerSecond = this.forwardSpeed / this.movementsPerSecond;
     }
