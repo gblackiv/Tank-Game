@@ -53,11 +53,14 @@ class GameBoard {
 		if( !this.playerTank ){
 			this.playerDiedModal();
 		}
-		if( !this.otherTanks[ 0 ] ){
+		if( this.otherTanks.length < 1 ){
 			this.allBotsDestroyed();
 		}
 	}
 	playerDiedModal(){
+		if( this.checkForCatsGame() ){
+			return;
+		}
 		this.modal.removeClass( 'hidden' );
 		$( '.modalButton' ).off( 'click' );
 		const newPlayerConfigObj = {
@@ -82,6 +85,9 @@ class GameBoard {
 		$( '#modalButton2' ).text( 'Respawn' );
 	}
 	allBotsDestroyed(){
+		if( this.checkForCatsGame() ){
+			return;
+		}
 		this.modal.removeClass( 'hidden' );
 		$( '.modalButton' ).off( 'click' );
 		$( '.modalHeader p' ).text( 'You Won!' );
@@ -109,6 +115,39 @@ class GameBoard {
 			this.createNewTank( tankConfigObj );
 		}
 		this.modal.addClass( 'hidden' );
-
+	}
+	checkForCatsGame(){
+		if( this.otherTanks.length < 1 && !this.playerTank ){
+			this.modal.removeClass( 'hidden' );
+			$( '.modalButton' ).off( 'click' );
+			const newPlayerConfigObj = {
+				xPosition: randomNumberGenerator( window.innerWidth ),
+				yPosition: randomNumberGenerator( window.innerHeight ),
+				angleOfDirection: 0,
+				currentGameBoard: this
+			};
+			const newBotConfigObj = {
+				xPosition: randomNumberGenerator( window.innerWidth ),
+				yPosition: randomNumberGenerator( window.innerHeight ),
+				angleOfDirection: 0,
+				currentGameBoard: this
+			};
+			$( '.modalHeader p' ).text( 'Cats game' );
+			$( '.modalBody' ).text( "You destroyed the bots, but also were destroyed!" );
+			$( '#modalButton1' ).addClass( 'hidden' );
+			$( '#modalButton3' ).addClass( 'hidden' );
+			$( '#modalButton2' ).click( () => {
+				this.radarSelector.destroy();
+				delete this.radarSelector;
+				this.createNewPlayerTank( newPlayerConfigObj );
+				this.createRadar( {
+					currentGameBoard: this
+				} );
+				this.createNewTank( newBotConfigObj );
+				this.modal.addClass( 'hidden' );
+			} );
+			$( '#modalButton2' ).text( 'Restart' );
+			return true;
+		}
 	}
 }
