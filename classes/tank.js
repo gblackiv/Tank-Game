@@ -91,8 +91,8 @@ class Tank extends ScreenObjects{
                 this.hitBox.right < cannonBallArray[ collisionIndex ].hitBox.left  ){
             }
             else{
-                this.destroyTank();
                 cannonBallArray[ collisionIndex ].destroyCannonBall();
+                this.destroyTank();
                 //soundsObj.tankDeath.play();
             }
         }

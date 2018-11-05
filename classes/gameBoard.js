@@ -41,6 +41,7 @@ class GameBoard {
 		this.otherTanks.push( newTank );
 	}
 	removeTankFromGame( tankObj ){
+		console.log(this.shotsFiredArray)
 		if( tankObj === this.playerTank ){
 			this.playerTank = null;
 		}
