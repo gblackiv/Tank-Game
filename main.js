@@ -75,16 +75,6 @@ function startGame(){
         yPosition: randomNumberGenerator(window.innerHeight), 
         angleOfDirection: 0, currentGameBoard: theGameScreen 
     } );
-    theGameScreen.createNewTank( { 
-        xPosition: randomNumberGenerator(window.innerWidth), 
-        yPosition: randomNumberGenerator(window.innerHeight), 
-        angleOfDirection: 0, currentGameBoard: theGameScreen 
-    } );
-    theGameScreen.createNewTank( { 
-        xPosition: randomNumberGenerator(window.innerWidth), 
-        yPosition: randomNumberGenerator(window.innerHeight), 
-        angleOfDirection: 0, currentGameBoard: theGameScreen 
-    } );
     theGameScreen.createRadar( { 
         currentGameBoard: theGameScreen 
     } );
