@@ -16,6 +16,10 @@ class Radar{
         clearInterval(this.heartbeat);
         this.heartbeat = null;
 	}
+	destroy(){
+		this.stopHeartbeat();
+		this.container.remove();
+	}
 	handleHeartbeat(){
 		this.spin();
 		this.scan();
@@ -28,28 +32,32 @@ class Radar{
 		this.sweeper.css('transform', `rotate(${this.currentAngle}deg)`);
 	}
 	scan(){
-		this.currentGameBoard.otherTanks.forEach( otherTank => {
-			let deltaX = -(this.playerTank.hitBox.x - otherTank.hitBox.x);
-			let deltaY = -(this.playerTank.hitBox.y - otherTank.hitBox.y);
-			let theta = ( Math.atan2( deltaY, deltaX ) * degreeConversionFactor );
-			if( theta < 0 ){
-				theta += 360;
-			}
-			if( (this.currentAngle + .5) > theta && theta > this.currentAngle ){
-				if( ( Math.abs( deltaX ) + Math.abs( deltaY ) ) / 2 < radarRange ){
-					const blip = new Blip( {
-						radar: this.container,
-						left: ( deltaX / radarBlipRatio ),
-						top: ( deltaY / radarBlipRatio )
-						} ) ;
-					blip.render();
-					if( !otherTank.heartbeat ){
-						otherTank.startHeartbeat( true );
+		try{
+			this.currentGameBoard.otherTanks.forEach( otherTank => {
+				let deltaX = -(this.playerTank.hitBox.x - otherTank.hitBox.x);
+				let deltaY = -(this.playerTank.hitBox.y - otherTank.hitBox.y);
+				let theta = ( Math.atan2( deltaY, deltaX ) * degreeConversionFactor );
+				if( theta < 0 ){
+					theta += 360;
+				}
+				if( (this.currentAngle + .5) > theta && theta > this.currentAngle ){
+					if( ( Math.abs( deltaX ) + Math.abs( deltaY ) ) / 2 < radarRange ){
+						const blip = new Blip( {
+							radar: this.container,
+							left: ( deltaX / radarBlipRatio ),
+							top: ( deltaY / radarBlipRatio )
+							} ) ;
+						blip.render();
+						if( !otherTank.heartbeat ){
+							otherTank.startHeartbeat( true );
+						}
 					}
 				}
-			}
-
-		});
+			});
+		}
+		catch{
+			return;
+		}
 	}
 	render(){
 		this.container = $( '<section>', {
@@ -59,6 +67,6 @@ class Radar{
 			id: 'sweeper'
 		});
 		this.container.append( this.sweeper );
-		$( 'body' ).prepend( this.container );
+		$( '#mainScreen' ).prepend( this.container );
 	}
 }

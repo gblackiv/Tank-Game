@@ -3,13 +3,13 @@ body, html{
     overflow: hidden;
     width: 100vw;
     height: 100vh;
-    cursor: crosshair;
 }
 html{
     font-size: 1vw;
 }
 #mainScreen{
     display: inline-block;
+    cursor: crosshair;
     width: 100vw;
     height: 100vh;
     position: relative;
@@ -43,8 +43,6 @@ html{
     position: absolute;
     transform-origin: ( 50%, 50% );
     background-color: forestgreen;
-    left: 20%;
-    top: 20%;
 }
 .tankGun{
     background-color: darkslategrey;
@@ -96,5 +94,106 @@ html{
     border-radius: 50%;
     background-color: red;
     opacity: 1;
-
+}
+#startScreen{
+    height: 100vh;
+    width: 100vw;
+    background-color: lightgrey;
+}
+#title{
+    margin: 0;
+    font-size: 10vh;
+    padding-top: 7%;
+    text-align: center;
+}
+#description, #instructions{
+    font-size: 3vh;
+    text-align: center;
+}
+#controls{
+    margin-bottom: 0;
+}
+#listContainer{
+    display: inline-block;
+    width: 50%;
+    margin: 0;
+}
+li{
+    padding-top: 2%;
+    text-align: left;
+}
+button:hover{
+    box-shadow: 2px 2px 3px 4px black;
+}
+#startGameButton{
+    margin-top: 30px;
+    height: 10%;
+    width: 15%;
+    font-size: 3vh;
+    position: relative;
+    left: 50%;
+    transform: translate( -50%, -50% );
+}
+@keyframes modalAnimation{
+    0% {
+        top: 0%;
+    }
+    100% {
+        top: 30%;
+    }
+}
+.modalContainer{
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    transform: translate( -50%, -50% );
+    height: 30%;
+    width: 25%;
+    background-color: rgb(101, 140, 172);
+    border: 2px solid black;
+    animation-name: modalAnimation;
+    animation-duration: 1000ms;
+    animation-fill-mode: forwards;
+}
+.modalHeader{
+    height: 25%;
+}
+.modalHeader p{
+    display: inline-block;
+    font-size: 5vh;
+    padding-left: 5%;
+    padding-top: 2%;
+    margin: 0;
+}
+.modalHeader button{
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 2vh;
+}
+.modalButtons{
+    position: relative;
+}
+.modalButton{
+    position: absolute;
+    width: 30%;
+    text-align: center;
+    font-size: 3vh;
+}
+#modalButton1{
+    left: 4%;
+}
+#modalButton2{
+    left: 35%;
+}
+#modalButton3{
+    left: 66%;
+}
+.modalBody{
+    padding: 5% 10%;
+    font-size: 3vh;
+    text-align: center;
+}
+.hidden{
+    display: none !important;
 }

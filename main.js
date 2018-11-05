@@ -2,12 +2,6 @@ $(document).ready(initializeGame)
 var theGameScreen;
 
 function initializeGame(){
-    theGameScreen = new GameBoard();
-    theGameScreen.createNewPlayerTank( { xPosition: 50, yPosition: 55, angleOfDirection: 0, currentGameBoard: theGameScreen } );
-    theGameScreen.createNewTank( { xPosition: 300, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
-    // theGameScreen.createNewTank( { xPosition: 500, yPosition: 100, angleOfDirection: 0, currentGameBoard: theGameScreen } );
-    // theGameScreen.createNewTank( { xPosition: 200, yPosition: 400, angleOfDirection: 0, currentGameBoard: theGameScreen } );
-    theGameScreen.createRadar({currentGameBoard: theGameScreen});
     attachEventHandlers();
 }
 
@@ -15,8 +9,15 @@ function attachEventHandlers(){
     $( document ).keydown( userKeyDownPresses );
     $( document ).keyup( userKeyUpPresses );
     $( '#mainScreen' ).mousemove( mouseMoving );
+    $( '#startGameButton').click( changeScreens );
+}
+function modalClose(){
+    $( '.modalContainer' ).addClass( 'hidden' );
 }
 function userKeyDownPresses( event ){
+    if( typeof theGameScreen === 'undefined' || typeof theGameScreen.playerTank === 'undefined' || !theGameScreen.playerTank ){
+        return;
+    }
     switch( event.which ){
         case 65:
             theGameScreen.playerTank.toggleTurningLeftOn();
@@ -33,6 +34,9 @@ function userKeyDownPresses( event ){
     }
 }
 function userKeyUpPresses( event ){
+    if( typeof theGameScreen === 'undefined' || typeof theGameScreen.playerTank === 'undefined' || !theGameScreen.playerTank ){
+        return;
+    }
     switch( event.which ){
         case 65:
             theGameScreen.playerTank.toggleTurningLeftOff();
@@ -46,8 +50,31 @@ function userKeyUpPresses( event ){
     }
 }
 function mouseMoving( event ){
+    if( typeof theGameScreen === 'undefined' || typeof theGameScreen.playerTank === 'undefined' || !theGameScreen.playerTank ){
+        return;
+    }
     let relativeXPosition = event.clientX - $('#mainScreen').offset().left;
     let relativeYPosition = event.clientY - $('#mainScreen').offset().top;
     theGameScreen.playerTank.alignTurret( relativeXPosition, relativeYPosition );
 }
-
+function changeScreens(){
+    $( '#startScreen' ).addClass( 'hidden' );
+    $( '#mainScreen' ).removeClass( 'hidden' );
+    startGame();
+}
+function startGame(){
+    theGameScreen = new GameBoard();
+    theGameScreen.createNewPlayerTank( { 
+        xPosition: randomNumberGenerator(window.innerWidth),
+        yPosition: randomNumberGenerator(window.innerHeight), 
+        angleOfDirection: 0, currentGameBoard: theGameScreen 
+    } );
+    theGameScreen.createNewTank( { 
+        xPosition: randomNumberGenerator(window.innerWidth), 
+        yPosition: randomNumberGenerator(window.innerHeight), 
+        angleOfDirection: 0, currentGameBoard: theGameScreen 
+    } );
+    theGameScreen.createRadar( { 
+        currentGameBoard: theGameScreen 
+    } );
+}

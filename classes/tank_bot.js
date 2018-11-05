@@ -13,20 +13,32 @@ class TankBot extends Tank{
 			this.turnRight();
 		}
 		this.moveForward();
+		if( this.currentGameBoard.playerTank ){
+			this.shoot();
+		}
 	}
 	scan(){
-		let deltaX = -(this.hitBox.x - this.currentGameBoard.playerTank.hitBox.x);
-		let deltaY = -(this.hitBox.y - this.currentGameBoard.playerTank.hitBox.y);
-		let theta = ( Math.atan2( deltaY, deltaX ) * degreeConversionFactor );
-		let pythagoreanDistance = Math.sqrt( Math.pow( deltaX, 2 ) + Math.pow( deltaY, 2 ) );
-		if( tankBotCircleRange + 50 > pythagoreanDistance && pythagoreanDistance > tankBotCircleRange ){
-			this.changeFacing( theta + 180 );
+		if( !this.currentGameBoard.playerTank ){
+			return;
 		}
-		else if( pythagoreanDistance < tankBotCircleRange ){
-			this.changeFacing( theta );
+		try{
+			let deltaX = -(this.hitBox.x - this.currentGameBoard.playerTank.hitBox.x);
+			let deltaY = -(this.hitBox.y - this.currentGameBoard.playerTank.hitBox.y);
+			let theta = ( Math.atan2( deltaY, deltaX ) * degreeConversionFactor );
+			let pythagoreanDistance = Math.sqrt( Math.pow( deltaX, 2 ) + Math.pow( deltaY, 2 ) );
+			if( tankBotCircleRange + 50 > pythagoreanDistance && pythagoreanDistance > tankBotCircleRange ){
+				this.changeFacing( theta + 180 );
+			}
+			else if( pythagoreanDistance < tankBotCircleRange ){
+				this.changeFacing( theta );
+			}
+			else{
+				this.changeFacing( theta + 90 );
+			}
+			this.pointTurret( theta + 90 );
 		}
-		else{
-			this.changeFacing( theta + 90 );
+		catch{
+			return;
 		}
 	}
 	changeFacing( theta ){
@@ -42,6 +54,10 @@ class TankBot extends Tank{
 		else{
 			this.toggleTurningRightOff();
 		}
+	}
+	pointTurret( theta ){
+		this.turretAngle = theta - this.angleOfDirection;
+		this.tankTurret.css( 'transform', `rotate(${this.turretAngle}deg)` );
 	}
 
 }

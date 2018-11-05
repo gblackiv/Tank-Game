@@ -9,7 +9,7 @@ class ScreenObjects{
         this.hitBox = null;
         this.heartbeatTimer = globalHeartbeatTimer;
         this.heartbeat = null;
-        this.forwardSpeed = 75;
+        this.forwardSpeed = tankSpeed;
         this.movementsPerSecond = 1000 / this.heartbeatTimer;
         this.forwardSpeedPerSecond = this.forwardSpeed / this.movementsPerSecond;
     }
@@ -41,6 +41,18 @@ class ScreenObjects{
         this.selector.css( this.configObj[ 'css' ] );
     }
     getHitBox(){
+        if( this.xPosition < 0 ){
+            this.xPosition = 0;
+        }
+        if( this.yPosition < 0 ){
+            this.yPosition = 0;
+        }
+        if( this.xPosition > window.innerWidth ){
+            this.xPosition = window.innerWidth;
+        }
+        if( this.yPosition > window.innerHeight ){
+            this.yPosition = window.innerHeight;
+        }
         this.hitBox = document.getElementById(this.randomID).getBoundingClientRect().toJSON();
     }
 }
