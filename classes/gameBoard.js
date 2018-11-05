@@ -132,7 +132,7 @@ class GameBoard {
 				angleOfDirection: 0,
 				currentGameBoard: this
 			};
-			$( '.modalHeader p' ).text( 'Cats game' );
+			$( '.modalHeader p' ).text( 'Draw!' );
 			$( '.modalBody' ).text( "You destroyed the bots, but also were destroyed!" );
 			$( '#modalButton1' ).addClass( 'hidden' );
 			$( '#modalButton3' ).addClass( 'hidden' );
