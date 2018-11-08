@@ -110,6 +110,9 @@ html{
     font-size: 3vh;
     text-align: center;
 }
+#description{
+    margin: 8px 10%;
+}
 #controls{
     margin-bottom: 0;
 }
