@@ -19,7 +19,7 @@ function modalClose( event ){
     event.stopPropagation()
 }
 function userKeyDownPresses( event ){
-    if( !theGameScreen.playerTank ){
+    if( typeof theGameScreen === 'undefined' || typeof theGameScreen.playerTank === 'undefined' || !theGameScreen.playerTank ){
         return;
     }
     switch( event.which ){
@@ -38,7 +38,7 @@ function userKeyDownPresses( event ){
     }
 }
 function userKeyUpPresses( event ){
-    if( !theGameScreen.playerTank ){
+    if( typeof theGameScreen === 'undefined' || typeof theGameScreen.playerTank === 'undefined' || !theGameScreen.playerTank ){
         return;
     }
     switch( event.which ){
@@ -54,7 +54,7 @@ function userKeyUpPresses( event ){
     }
 }
 function mouseMoving( event ){
-    if( !theGameScreen.playerTank ){
+    if( typeof theGameScreen === 'undefined' || typeof theGameScreen.playerTank === 'undefined' || !theGameScreen.playerTank ){
         return;
     }
     let relativeXPosition = event.clientX - $('#mainScreen').offset().left;
@@ -72,16 +72,6 @@ function startGame(){
     theGameScreen = new GameBoard();
     theGameScreen.createNewPlayerTank( { 
         xPosition: randomNumberGenerator(window.innerWidth),
-        yPosition: randomNumberGenerator(window.innerHeight), 
-        angleOfDirection: 0, currentGameBoard: theGameScreen 
-    } );
-    theGameScreen.createNewTank( { 
-        xPosition: randomNumberGenerator(window.innerWidth), 
-        yPosition: randomNumberGenerator(window.innerHeight), 
-        angleOfDirection: 0, currentGameBoard: theGameScreen 
-    } );
-    theGameScreen.createNewTank( { 
-        xPosition: randomNumberGenerator(window.innerWidth), 
         yPosition: randomNumberGenerator(window.innerHeight), 
         angleOfDirection: 0, currentGameBoard: theGameScreen 
     } );
