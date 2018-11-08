@@ -11,12 +11,19 @@ function attachEventHandlers(){
     $( '#mainScreen' ).mousemove( mouseMoving );
     $( '#startGameButton').click( changeScreens );
     $( '.modalClose' ).click( modalClose );
-    $( '#mainScreen' ).click( theGameScreen.playerTank.shoot );
+    $( '#mainScreen' ).click( shootWithMouse );
+
 
 }
 function modalClose( event ){
     $( '.modalContainer' ).addClass( 'hidden' );
     event.stopPropagation()
+}
+function shootWithMouse( event ){
+    if( typeof theGameScreen === 'undefined' || typeof theGameScreen.playerTank === 'undefined' || !theGameScreen.playerTank ){
+        return;
+    }
+    theGameScreen.playerTank.shoot()
 }
 function userKeyDownPresses( event ){
     if( typeof theGameScreen === 'undefined' || typeof theGameScreen.playerTank === 'undefined' || !theGameScreen.playerTank ){
@@ -83,4 +90,5 @@ function startGame(){
     theGameScreen.createRadar( { 
         currentGameBoard: theGameScreen 
     } );
+
 }
