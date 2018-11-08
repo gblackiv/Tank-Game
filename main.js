@@ -11,9 +11,12 @@ function attachEventHandlers(){
     $( '#mainScreen' ).mousemove( mouseMoving );
     $( '#startGameButton').click( changeScreens );
     $( '.modalClose' ).click( modalClose );
+    $( '#mainScreen' ).click( theGameScreen.playerTank.shoot );
+
 }
-function modalClose(){
+function modalClose( event ){
     $( '.modalContainer' ).addClass( 'hidden' );
+    event.stopPropagation()
 }
 function userKeyDownPresses( event ){
     if( !theGameScreen.playerTank ){
@@ -58,7 +61,9 @@ function mouseMoving( event ){
     let relativeYPosition = event.clientY - $('#mainScreen').offset().top;
     theGameScreen.playerTank.alignTurret( relativeXPosition, relativeYPosition );
 }
-function changeScreens(){
+
+function changeScreens( event ){
+    event.stopPropagation()
     $( '#startScreen' ).addClass( 'hidden' );
     $( '#mainScreen' ).removeClass( 'hidden' );
     startGame();
