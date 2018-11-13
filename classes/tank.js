@@ -138,8 +138,8 @@ class Tank extends ScreenObjects{
         this.selector = $( '#'+this.randomID );
     }
     alignTurret(x, y){
-        let deltaX = -(this.xPosition - x);
-        let deltaY = -(this.yPosition - y);
+        let deltaX = -( ( this.xPosition + ( this.hitBox.width / 2) ) - x);
+        let deltaY = -( ( this.yPosition  + ( this.hitBox.width / 2) ) - y);
         let theta = ( Math.atan2( deltaY, deltaX ) * degreeConversionFactor ) + 90;
         this.turretAngle = theta - this.angleOfDirection;
         this.tankTurret.css( 'transform', `rotate(${this.turretAngle}deg)` );
