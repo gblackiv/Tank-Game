@@ -11,7 +11,7 @@ function attachEventHandlers(){
     $( '#mainScreen' ).mousemove( mouseMoving );
     $( '#startGameButton').click( changeScreens );
     $( '.modalClose' ).click( modalClose );
-    $( '#mainScreen' ).click( shootWithMouse );
+    $( '#mainScreen' ).mousedown( shootWithMouse );
 
 
 }
