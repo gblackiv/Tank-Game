@@ -53,18 +53,18 @@ class ScreenObjects{
         this.selector.css( this.configObj[ 'css' ] );
     }
     getHitBox(){
+        this.hitBox = document.getElementById(this.randomID).getBoundingClientRect().toJSON();
         if( this.xPosition < 0 ){
             this.xPosition = 0;
         }
         if( this.yPosition < 0 ){
             this.yPosition = 0;
         }
-        if( this.xPosition > window.innerWidth ){
-            this.xPosition = window.innerWidth;
+        if( this.xPosition + ( this.hitBox.width / 2 ) > window.innerWidth ){
+            this.xPosition = window.innerWidth - ( this.hitBox.width / 2 );
         }
-        if( this.yPosition > window.innerHeight ){
-            this.yPosition = window.innerHeight;
+        if( this.yPosition + ( this.hitBox.height / 2 ) > window.innerHeight ){
+            this.yPosition = window.innerHeight - ( this.hitBox.height / 2 );
         }
-        this.hitBox = document.getElementById(this.randomID).getBoundingClientRect().toJSON();
     }
 }
