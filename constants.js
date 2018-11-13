@@ -12,3 +12,4 @@ const randomNumberGenerator = ( max, min = 0 ) => {
 	return Math.floor( ( Math.random() * max ) + min )
 }
 const invulnerableTimer = 3000;
+const cannonballSpeed = 300;

@@ -48,9 +48,9 @@ class Radar{
 							top: ( deltaY / radarBlipRatio )
 							} ) ;
 						blip.render();
-						if( !otherTank.heartbeat ){
-							otherTank.startHeartbeat( true );
-						}
+						// if( !otherTank.heartbeat ){
+						// 	otherTank.startHeartbeat( true );
+						// }
 					}
 				}
 			});

@@ -51,6 +51,9 @@ class GameBoard {
 		}
 		if( !this.playerTank ){
 			this.playerDiedModal();
+			this.otherTanks.forEach( tank => {
+				tank.stopHeartbeat();
+			})
 		}
 		if( this.otherTanks.length < 1 ){
 			this.allBotsDestroyed();
@@ -153,9 +156,9 @@ class GameBoard {
 		}
 	}
 	startInvulnerability( tankObj ){
-		tankObj.stopHeartbeat();
+		tankObj.selector.addClass('invulnerableClass');
 		setTimeout(() => {
-			tankObj.selector.addClass('invulnerableClass').removeClass('invulnerableClass')
+			tankObj.selector.removeClass('invulnerableClass');
 			tankObj.getHitBox();
 			tankObj.startHeartbeat( true );
 		}, invulnerableTimer)

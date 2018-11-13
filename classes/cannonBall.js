@@ -2,8 +2,9 @@ class CannonBall extends ScreenObjects{
     constructor( cannonBallOptions ){
         super( cannonBallOptions );
         this.isMoving = true;
-        this.forwardSpeed = 300;
-        this.forwardSpeedPerSecond = this.forwardSpeed / this.movementsPerSecond;  //doesnt need to be hard coded
+        this.ownerTank = cannonBallOptions.tank;
+        this.forwardSpeed = cannonballSpeed;
+        this.forwardSpeedPerSecond = this.forwardSpeed / this.movementsPerSecond;
         this.randomID = 'cannonball' + Math.floor( Math.random() * 1000 );
         this.configObj = {
             'class': 'cannonBall',

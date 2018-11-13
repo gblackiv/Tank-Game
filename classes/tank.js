@@ -9,7 +9,6 @@ class Tank extends ScreenObjects{
         this.configObj = {
             class: tankOptions.class || 'tankSquare', 
             id: this.randomID,
-            src: this.img,
             css: { 
                 'top': this.yPosition+'px', 
                 left: this.xPosition+'px', 
@@ -47,7 +46,8 @@ class Tank extends ScreenObjects{
             xPosition: this.xPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 0 ] ) + ( Math.sin( (this.turretAngle + this.angleOfDirection) * radiansConversionFactor ) * ( this.hitBox.width / 1.1 ) ), 
             yPosition: this.yPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 1 ] ) - ( Math.cos( (this.turretAngle + this.angleOfDirection) * radiansConversionFactor ) * ( this.hitBox.height / 1.1 ) ), 
             angleOfDirection: this.angleOfDirection + this.turretAngle,
-            currentGameBoard: this.currentGameBoard
+            currentGameBoard: this.currentGameBoard,
+            tank: this
         });
         setTimeout(() => {
             this.rateOfFireBoolean = false;
@@ -100,6 +100,10 @@ class Tank extends ScreenObjects{
                 this.hitBox.right < cannonBallArray[ collisionIndex ].hitBox.left  ){
             }
             else{
+                if( cannonBallArray[ collisionIndex ].ownerTank === this ){
+                    console.log('killed self')
+                    return;
+                }
                 cannonBallArray[ collisionIndex ].destroyCannonBall();
                 this.destroyTank();
                 //soundsObj.tankDeath.play();
