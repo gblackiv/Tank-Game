@@ -6,12 +6,15 @@ class ScreenObjects{
         this.yPosition = screenObjectOptions.yPosition;
         this.angleOfDirection = screenObjectOptions.angleOfDirection;
         this.isMoving = false;
+        this.isReversing = false;
         this.hitBox = null;
         this.heartbeatTimer = globalHeartbeatTimer;
         this.heartbeat = null;
         this.forwardSpeed = tankSpeed;
+        this.reverseSpeed = tankSpeed / 1.5;
         this.movementsPerSecond = 1000 / this.heartbeatTimer;
         this.forwardSpeedPerSecond = this.forwardSpeed / this.movementsPerSecond;
+        this.reverseSpeedPerSecond = this.reverseSpeed / this.movementsPerSecond;
     }
     startHeartbeat( bot = false ){
         if( this.heartbeat !== null){
@@ -33,6 +36,15 @@ class ScreenObjects{
         var newYPosition = Math.cos( this.angleOfDirection * radiansConversionFactor ) * this.forwardSpeedPerSecond;
         this.xPosition += newXPosition;
         this.yPosition -= newYPosition;
+        this.configObj[ 'css' ][ 'left' ] = this.xPosition + 'px';
+        this.configObj[ 'css' ][ 'top' ] = this.yPosition + 'px';
+        this.moveDomElement();
+    }
+    moveReverse(){
+        var newXPosition = Math.sin( this.angleOfDirection * radiansConversionFactor ) * this.reverseSpeedPerSecond;
+        var newYPosition = Math.cos( this.angleOfDirection * radiansConversionFactor ) * this.reverseSpeedPerSecond;
+        this.xPosition += -newXPosition;
+        this.yPosition -= -newYPosition;
         this.configObj[ 'css' ][ 'left' ] = this.xPosition + 'px';
         this.configObj[ 'css' ][ 'top' ] = this.yPosition + 'px';
         this.moveDomElement();

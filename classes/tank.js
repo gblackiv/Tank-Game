@@ -29,7 +29,10 @@ class Tank extends ScreenObjects{
             this.turnRight();
         }
         if( this.isMoving ){
-            this.moveForward( this.selector );
+            this.moveForward();
+        }
+        if( this.isReversing ){
+            this.moveReverse();
         }
         this.getHitBox();
         this.collisionDetection( this.currentGameBoard.shotsFiredArray );
@@ -82,6 +85,12 @@ class Tank extends ScreenObjects{
     }
     toggleForwardMovementOff(){
         this.isMoving = false;
+    }
+    toggleReverseMovementOn(){
+        this.isReversing = true;
+    }
+    toggleReverseMovementOff(){
+        this.isReversing = false;
     }
     collisionDetection( cannonBallArray ){
         for( let collisionIndex = 0; collisionIndex < cannonBallArray.length; collisionIndex++ ){

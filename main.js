@@ -36,6 +36,9 @@ function userKeyDownPresses( event ){
         case 87: 
             theGameScreen.playerTank.toggleForwardMovementOn();
             break;
+        case 83:
+            theGameScreen.playerTank.toggleReverseMovementOn();
+            break;
         case 68:
             theGameScreen.playerTank.toggleTurningRightOn();
             break;
@@ -54,6 +57,9 @@ function userKeyUpPresses( event ){
             break;
         case 87:
             theGameScreen.playerTank.toggleForwardMovementOff();
+            break;
+        case 83:
+            theGameScreen.playerTank.toggleReverseMovementOff();
             break;
         case 68:
             theGameScreen.playerTank.toggleTurningRightOff();
