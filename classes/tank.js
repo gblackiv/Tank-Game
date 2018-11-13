@@ -3,13 +3,12 @@ class Tank extends ScreenObjects{
         super(tankOptions);
         this.amITurningRight = false;
         this.amITurningLeft = false;
-        this.randomID = 'tank' + Math.floor( Math.random() * 1000 );
+        this.randomID = 'tank' + randomNumberGenerator(1000);
         this.rateOfFireBoolean = false;
         this.turretAngle = 0;
         this.configObj = {
             class: tankOptions.class || 'tankSquare', 
             id: this.randomID,
-            src: this.img,
             css: { 
                 'top': this.yPosition+'px', 
                 left: this.xPosition+'px', 
@@ -29,7 +28,10 @@ class Tank extends ScreenObjects{
             this.turnRight();
         }
         if( this.isMoving ){
-            this.moveForward( this.selector );
+            this.moveForward();
+        }
+        if( this.isReversing ){
+            this.moveReverse();
         }
         this.getHitBox();
         this.collisionDetection( this.currentGameBoard.shotsFiredArray );
@@ -44,7 +46,8 @@ class Tank extends ScreenObjects{
             xPosition: this.xPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 0 ] ) + ( Math.sin( (this.turretAngle + this.angleOfDirection) * radiansConversionFactor ) * ( this.hitBox.width / 1.1 ) ), 
             yPosition: this.yPosition + parseFloat( this.selector.css('transform-origin').split(' ')[ 1 ] ) - ( Math.cos( (this.turretAngle + this.angleOfDirection) * radiansConversionFactor ) * ( this.hitBox.height / 1.1 ) ), 
             angleOfDirection: this.angleOfDirection + this.turretAngle,
-            currentGameBoard: this.currentGameBoard
+            currentGameBoard: this.currentGameBoard,
+            tank: this
         });
         setTimeout(() => {
             this.rateOfFireBoolean = false;
@@ -58,6 +61,12 @@ class Tank extends ScreenObjects{
         this.amITurningLeft = false;
     }
     turnLeft(){
+        if( this.angleOfDirection > 360 ){
+            this.angleOfDirection = 0;
+        }
+        if(  0 > this.angleOfDirection ){
+            this.angleOfDirection = 360;
+        }
         this.angleOfDirection -= turnRadius;
         this.turretAngle += turnRadius;
         this.tankTurret.css( 'transform', `rotate(${this.turretAngle}deg)` );
@@ -71,6 +80,12 @@ class Tank extends ScreenObjects{
         this.amITurningRight = false;
     }
     turnRight(){
+        if( this.angleOfDirection > 360 ){
+            this.angleOfDirection = 0;
+        }
+        if(  0 > this.angleOfDirection ){
+            this.angleOfDirection = 360;
+        }
         this.angleOfDirection += turnRadius;
         this.turretAngle -= turnRadius;
         this.tankTurret.css( 'transform', `rotate(${this.turretAngle}deg)` );
@@ -83,6 +98,12 @@ class Tank extends ScreenObjects{
     toggleForwardMovementOff(){
         this.isMoving = false;
     }
+    toggleReverseMovementOn(){
+        this.isReversing = true;
+    }
+    toggleReverseMovementOff(){
+        this.isReversing = false;
+    }
     collisionDetection( cannonBallArray ){
         for( let collisionIndex = 0; collisionIndex < cannonBallArray.length; collisionIndex++ ){
             if( this.hitBox.top > cannonBallArray[ collisionIndex ].hitBox.bottom ||
@@ -91,6 +112,9 @@ class Tank extends ScreenObjects{
                 this.hitBox.right < cannonBallArray[ collisionIndex ].hitBox.left  ){
             }
             else{
+                if( cannonBallArray[ collisionIndex ].ownerTank === this ){
+                    return;
+                }
                 cannonBallArray[ collisionIndex ].destroyCannonBall();
                 this.destroyTank();
                 //soundsObj.tankDeath.play();
@@ -114,8 +138,8 @@ class Tank extends ScreenObjects{
         this.selector = $( '#'+this.randomID );
     }
     alignTurret(x, y){
-        let deltaX = -(this.xPosition - x);
-        let deltaY = -(this.yPosition - y);
+        let deltaX = -( ( this.xPosition + ( this.hitBox.width / 2) ) - x);
+        let deltaY = -( ( this.yPosition  + ( this.hitBox.width / 2) ) - y);
         let theta = ( Math.atan2( deltaY, deltaX ) * degreeConversionFactor ) + 90;
         this.turretAngle = theta - this.angleOfDirection;
         this.tankTurret.css( 'transform', `rotate(${this.turretAngle}deg)` );

@@ -36,8 +36,7 @@ class GameBoard {
 		tankConfigObj.gameBoardArrayPosition = this.otherTanks.length	//adds into the constructor the position in the array that the other tank will be assigned to
 		var newTank = new TankBot( tankConfigObj );
 		newTank.render();
-		newTank.getHitBox();
-		newTank.startHeartbeat( true );
+		this.startInvulnerability( newTank );
 		this.otherTanks.push( newTank );
 	}
 	removeTankFromGame( tankObj ){
@@ -52,6 +51,9 @@ class GameBoard {
 		}
 		if( !this.playerTank ){
 			this.playerDiedModal();
+			this.otherTanks.forEach( tank => {
+				tank.stopHeartbeat();
+			})
 		}
 		if( this.otherTanks.length < 1 ){
 			this.allBotsDestroyed();
@@ -79,8 +81,11 @@ class GameBoard {
 			this.createNewPlayerTank( newPlayerConfigObj );
 			this.createRadar( {
 				currentGameBoard: this
-			} )
+			} );
 			this.modal.addClass( 'hidden' );
+			this.otherTanks.forEach( ( tank )=> {
+				this.startInvulnerability( tank );
+			});
 		} );
 		$( '#modalButton2' ).text( 'Respawn' );
 	}
@@ -149,5 +154,13 @@ class GameBoard {
 			$( '#modalButton2' ).text( 'Restart' );
 			return true;
 		}
+	}
+	startInvulnerability( tankObj ){
+		tankObj.selector.addClass('invulnerableClass');
+		setTimeout(() => {
+			tankObj.selector.removeClass('invulnerableClass');
+			tankObj.getHitBox();
+			tankObj.startHeartbeat( true );
+		}, invulnerableTimer)
 	}
 }

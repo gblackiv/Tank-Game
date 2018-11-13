@@ -11,7 +11,7 @@ function attachEventHandlers(){
     $( '#mainScreen' ).mousemove( mouseMoving );
     $( '#startGameButton').click( changeScreens );
     $( '.modalClose' ).click( modalClose );
-    $( '#mainScreen' ).click( shootWithMouse );
+    $( '#mainScreen' ).mousedown( shootWithMouse );
 
 
 }
@@ -36,6 +36,9 @@ function userKeyDownPresses( event ){
         case 87: 
             theGameScreen.playerTank.toggleForwardMovementOn();
             break;
+        case 83:
+            theGameScreen.playerTank.toggleReverseMovementOn();
+            break;
         case 68:
             theGameScreen.playerTank.toggleTurningRightOn();
             break;
@@ -54,6 +57,9 @@ function userKeyUpPresses( event ){
             break;
         case 87:
             theGameScreen.playerTank.toggleForwardMovementOff();
+            break;
+        case 83:
+            theGameScreen.playerTank.toggleReverseMovementOff();
             break;
         case 68:
             theGameScreen.playerTank.toggleTurningRightOff();
@@ -82,11 +88,11 @@ function startGame(){
         yPosition: randomNumberGenerator(window.innerHeight), 
         angleOfDirection: 0, currentGameBoard: theGameScreen 
     } );
-    theGameScreen.createNewTank( { 
-        xPosition: randomNumberGenerator(window.innerWidth), 
-        yPosition: randomNumberGenerator(window.innerHeight), 
-        angleOfDirection: 0, currentGameBoard: theGameScreen 
-    } );
+    // theGameScreen.createNewTank( { 
+    //     xPosition: randomNumberGenerator(window.innerWidth), 
+    //     yPosition: randomNumberGenerator(window.innerHeight), 
+    //     angleOfDirection: 0, currentGameBoard: theGameScreen 
+    // } );
     theGameScreen.createRadar( { 
         currentGameBoard: theGameScreen 
     } );
