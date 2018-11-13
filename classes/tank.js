@@ -3,7 +3,7 @@ class Tank extends ScreenObjects{
         super(tankOptions);
         this.amITurningRight = false;
         this.amITurningLeft = false;
-        this.randomID = 'tank' + Math.floor( Math.random() * 1000 );
+        this.randomID = 'tank' + randomNumberGenerator(1000);
         this.rateOfFireBoolean = false;
         this.turretAngle = 0;
         this.configObj = {

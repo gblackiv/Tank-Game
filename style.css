@@ -22,12 +22,23 @@ html{
     background-color: black;
     position: absolute;
 }
-.tank{
-    position: absolute;
-    height: 10%;
-    width: auto;
-    transform-origin: ( 50%, 50% );
+@keyframes invulnerableFlash{
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .2;
+    }
+    100% {
+        opacity: 1;
+    }
 }
+.invulnerableClass{
+    animation-name: invulnerableFlash;
+    animation-iteration-count: 6;
+    animation-duration: 0.5s;
+}
+
 .frontMarker{
     position: absolute;
     height: 10%;
@@ -43,6 +54,7 @@ html{
     position: absolute;
     transform-origin: ( 50%, 50% );
     background-color: forestgreen;
+
 }
 .tankGun{
     background-color: darkslategrey;
@@ -51,7 +63,6 @@ html{
     position: absolute;
     top: -180%;
     left: 40%;
-
 }
 .tankTurret{
     width: 50%;
