@@ -61,6 +61,12 @@ class Tank extends ScreenObjects{
         this.amITurningLeft = false;
     }
     turnLeft(){
+        if( this.angleOfDirection > 360 ){
+            this.angleOfDirection = 0;
+        }
+        if(  0 > this.angleOfDirection ){
+            this.angleOfDirection = 360;
+        }
         this.angleOfDirection -= turnRadius;
         this.turretAngle += turnRadius;
         this.tankTurret.css( 'transform', `rotate(${this.turretAngle}deg)` );
@@ -74,6 +80,12 @@ class Tank extends ScreenObjects{
         this.amITurningRight = false;
     }
     turnRight(){
+        if( this.angleOfDirection > 360 ){
+            this.angleOfDirection = 0;
+        }
+        if(  0 > this.angleOfDirection ){
+            this.angleOfDirection = 360;
+        }
         this.angleOfDirection += turnRadius;
         this.turretAngle -= turnRadius;
         this.tankTurret.css( 'transform', `rotate(${this.turretAngle}deg)` );
@@ -101,7 +113,6 @@ class Tank extends ScreenObjects{
             }
             else{
                 if( cannonBallArray[ collisionIndex ].ownerTank === this ){
-                    console.log('killed self')
                     return;
                 }
                 cannonBallArray[ collisionIndex ].destroyCannonBall();
