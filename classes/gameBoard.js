@@ -51,12 +51,18 @@ class GameBoard {
 		}
 		if( !this.playerTank ){
 			this.playerDiedModal();
+			while( this.shotsFiredArray.length > 0 ){
+				this.shotsFiredArray[ this.shotsFiredArray.length - 1 ].destroyCannonBall();
+			}
 			this.otherTanks.forEach( tank => {
 				tank.stopHeartbeat();
-			})
+			});
 		}
 		if( this.otherTanks.length < 1 ){
 			this.allBotsDestroyed();
+			while( this.shotsFiredArray.length > 0 ){
+				this.shotsFiredArray[ this.shotsFiredArray.length - 1 ].destroyCannonBall();
+			}
 		}
 	}
 	playerDiedModal(){
